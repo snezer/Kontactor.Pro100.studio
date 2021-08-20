@@ -33,6 +33,10 @@ namespace netcoreservice.Service.Controllers
             _users = users;
         }
 
+        /// <summary>
+        /// Сидирует роли и дефолтного пользователя
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("seed")]
         public async Task<IActionResult> Seed()
