@@ -32,12 +32,12 @@ namespace netcoreservice.Service
                         .AddEnvironmentVariables().Build();
 
                     
-                    webBuilder.ConfigureLogging((logging) =>
-                    {
-                        logging.ClearProviders();
-                        logging.SetMinimumLevel(LogLevel.Trace);
-                        logging.AddLog4Net();
-                    });
+                    //webBuilder.ConfigureLogging((logging) =>
+                    //{
+                    //    logging.ClearProviders();
+                    //    logging.SetMinimumLevel(LogLevel.Trace);
+                    //    logging.AddLog4Net();
+                    //});
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls(config["hostUrl"]);
                 })

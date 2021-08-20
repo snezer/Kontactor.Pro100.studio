@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using CENTROS.SMSNotifications.Service.Models;
 using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
+using KONTAKTOR.Notifications.DA.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,36 +20,38 @@ namespace netcoreservice.Service.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    public class OccupationController : ControllerBase
+    public class CompanyController : ControllerBase
     {
-        private OccupationRepository _repo;
-        private IMapper _mapper;
+        private CompanyRepository _repo;
 
-        public OccupationController(OccupationRepository repo, IMapper mapper)
+        // private readonly log4net.ILog _logger;
+        public CompanyController(CompanyRepository repo, IMapper mapper)
         {
             _repo = repo;
-            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Occupation model)
+        public async Task<IActionResult> Create(Company model)
         {
-            var result = await _repo.CreateAsync(model);
-            return Ok(result);
+            var company = await _repo.CreateAsync(model);
+            return Ok(company);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Occupation model)
+        public async Task<IActionResult> Update(Company model)
         {
             var result = await _repo.UpdateAsync(model);
             return Ok(result);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
         {
-            var all = await _repo.GetAllAsync();
-            return Ok(all);
+            var result = await _repo.GetAsync(id);
+
+            return result != null
+                ? (IActionResult)Ok(result)
+                : NotFound();
         }
 
     }

@@ -19,26 +19,32 @@ namespace KONTAKTOR.DA.Mongo
             _collection = database.GetCollection<T>(typeof(T).Name);
         }
 
-        public async Task<List<T>> Get()
+        public async Task<List<T>> GetAllAsync()
         {
             return (await _collection.FindAsync(_ => true)).ToList();
         }
 
-        public async Task<T> Get(string id)
+        public async Task<T> GetAsync(string id)
         {
             return (await _collection.FindAsync<T>(x => x.Id == id)).FirstOrDefault();
         }
 
-        public async Task<T> Create(T t)
+        public async Task<T> CreateAsync(T t)
         {
             t.Id = null;
             await _collection.InsertOneAsync(t);
             return t;
         }
 
-        public virtual async Task<bool> Update(string id, T t)
+        public virtual async Task<bool> UpdateAsync(string id, T t)
         {
             var result = await _collection.ReplaceOneAsync<T>(x => x.Id == id, t);
+            return result.IsAcknowledged;
+        }
+
+        public virtual async Task<bool> UpdateAsync(T t)
+        {
+            var result = await _collection.ReplaceOneAsync<T>(x => x.Id == t.Id, t);
             return result.IsAcknowledged;
         }
 
