@@ -14,6 +14,7 @@ using netcoreservice.Service.Discovery;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using KONTAKTOR.DA.Interfaces;
+using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
@@ -63,6 +64,13 @@ namespace netcoreservice.Service
                     if (File.Exists(xmlPath))
                     {
                         options.IncludeXmlComments(xmlPath);
+                    }
+
+                    var modelsFile = $"{typeof(Compartment).Assembly.GetName().Name}.xml";
+                    var xmlPathModels = Path.Combine(AppContext.BaseDirectory, modelsFile);
+                    if (File.Exists(xmlPathModels))
+                    {
+                        options.IncludeXmlComments(xmlPathModels);
                     }
                 }
             );

@@ -34,7 +34,6 @@ namespace netcoreservice.Service.Controllers
 
         
         [HttpGet]
-        
         public async Task<IActionResult> Get()
         {
             var result = await _news.GetAllAsync();

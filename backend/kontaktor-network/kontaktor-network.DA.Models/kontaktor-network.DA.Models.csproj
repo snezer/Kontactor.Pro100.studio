@@ -2,8 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>kontaktor_network.DA.Models</RootNamespace>
+    <RootNamespace>KONTAKTOR.DA.Models</RootNamespace>
   </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
