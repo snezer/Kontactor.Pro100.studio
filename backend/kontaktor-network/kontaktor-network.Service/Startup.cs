@@ -82,6 +82,8 @@ namespace netcoreservice.Service
             services.AddSingleton<UserRoleRepository>();
             services.AddSingleton<TenancyRepository>();
             services.AddSingleton<CompartmentRepository>();
+            services.AddSingleton<RentFactRepository>();
+            services.AddSingleton<MainNewsRepository>();
 
             services.AddSingleton<RolesSeeder>();
             services.AddSingleton<UserSeeder>();

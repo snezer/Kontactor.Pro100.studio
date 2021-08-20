@@ -15,5 +15,7 @@ namespace KONTAKTOR.DA.Models
         /// Площадь
         /// </summary>
         public decimal Area { get; set; }
+
+        public string MapRoomId { get; set; }
     }
 }
