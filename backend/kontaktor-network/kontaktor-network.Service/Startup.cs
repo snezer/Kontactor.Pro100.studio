@@ -53,8 +53,7 @@ namespace netcoreservice.Service
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
             services.AddSystemMetrics();
-            services.AddHealthChecks()
-                .ForwardToPrometheus();
+            
 
             services.AddGenericServiceOptions<MongoConnectionOptions>(Configuration, "MongoDB");
             
