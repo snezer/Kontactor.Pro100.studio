@@ -10,6 +10,7 @@ using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using KONTAKTOR.Notifications.DA.Interfaces;
+using KONTAKTOR.Service.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,25 +21,25 @@ namespace netcoreservice.Service.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    public class CompanyController : ControllerBase
+    public class BinaryContentController : ControllerBase
     {
-        private CompanyRepository _repo;
+        private BinaryContentRepository _repo;
 
         // private readonly log4net.ILog _logger;
-        public CompanyController(CompanyRepository repo, IMapper mapper)
+        public BinaryContentController(BinaryContentRepository repo,  IMapper mapper)
         {
             _repo = repo;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Company model)
+        public async Task<IActionResult> Create(BinaryContent model)
         {
             var company = await _repo.CreateAsync(model);
             return Ok(company);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Company model)
+        public async Task<IActionResult> Update(BinaryContent model)
         {
             var result = await _repo.UpdateAsync(model);
             return Ok(result);
@@ -54,5 +55,6 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
+        
     }
 }

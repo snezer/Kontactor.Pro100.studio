@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CENTROS.SMSNotifications.Service.Models;
 using KONTAKTOR.DA.Models;
+using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,10 @@ namespace netcoreservice.Service.Controllers
     [ApiVersion("1.0")]
     public class OccupationController : ControllerBase
     {
-        private IOccupationRepository _repo;
+        private OccupationRepository _repo;
         private IMapper _mapper;
 
-        public OccupationController(IOccupationRepository repo, IMapper mapper)
+        public OccupationController(OccupationRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
@@ -45,7 +46,7 @@ namespace netcoreservice.Service.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var all = await _repo.GetOccupationsAsync();
+            var all = await _repo.GetAllAsync();
             return Ok(all);
         }
 
