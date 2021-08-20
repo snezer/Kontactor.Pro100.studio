@@ -14,6 +14,7 @@ using KONTAKTOR.DA.Interfaces;
 using KONTAKTOR.DA.Mongo;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
+using KONTAKTOR.Service.Services;
 using Prometheus;
 using Prometheus.SystemMetrics;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -60,8 +61,14 @@ namespace netcoreservice.Service
 
             
 
-            services.AddSingleton<ICompanyRepository, CompanyRepository>();
-            services.AddSingleton<IOccupationRepository, OccupationRepository>();
+            services.AddSingleton<CompanyRepository>();
+            services.AddSingleton<OccupationRepository>();
+            services.AddSingleton<BinaryContentRepository>();
+            services.AddSingleton<UserInformationRepository>();
+            services.AddSingleton<UserRoleRepository>();
+
+            services.AddSingleton<RolesSeeder>();
+            services.AddSingleton<UserSeeder>();
 
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddAutoMapper(typeof(CompanyMappingProfile));

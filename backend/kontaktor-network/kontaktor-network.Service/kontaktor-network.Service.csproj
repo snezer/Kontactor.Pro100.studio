@@ -38,7 +38,6 @@
   <ItemGroup>
     <Folder Include="Consts\" />
     <Folder Include="HostedServices\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
