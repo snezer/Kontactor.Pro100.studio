@@ -83,6 +83,14 @@ namespace netcoreservice.Service
             }
 
             app.UseRouting();
+            app.UseCors(o =>
+            {
+                o.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowCredentials();
+            });
+                
             app.UseHttpMetrics();
             
             app.UseAuthorization();
