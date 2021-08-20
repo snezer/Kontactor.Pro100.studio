@@ -11,5 +11,9 @@ namespace KONTAKTOR.DA.Models
         public string ShortNameOrCode { get; set; }
         public bool IsForRent { get; set; }
         public bool IsForLongTermRent { get; set; }
+        /// <summary>
+        /// Площадь
+        /// </summary>
+        public decimal Area { get; set; }
     }
 }

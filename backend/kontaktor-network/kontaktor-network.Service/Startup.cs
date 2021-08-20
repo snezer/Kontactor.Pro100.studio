@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using CENTROS.SMSNotifications.Service.Models.Mapping;
 using Dapper.Contrib.Extensions;
 using DapperExtensions.Sql;
@@ -51,7 +54,18 @@ namespace netcoreservice.Service
                 options.SubstituteApiVersionInUrl = true;
             });
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+            services.AddSwaggerGen(options =>
+                {
+                    options.OperationFilter<SwaggerDefaultValues>();
+                    
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    if (File.Exists(xmlPath))
+                    {
+                        options.IncludeXmlComments(xmlPath);
+                    }
+                }
+            );
 
             services.AddSystemMetrics();
             

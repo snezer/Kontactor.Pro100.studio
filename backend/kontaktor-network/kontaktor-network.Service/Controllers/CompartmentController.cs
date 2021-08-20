@@ -50,5 +50,12 @@ namespace netcoreservice.Service.Controllers
             return Ok(all);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var all = await _repo.GetAsync(id);
+            return Ok(all);
+        }
+
     }
 }
