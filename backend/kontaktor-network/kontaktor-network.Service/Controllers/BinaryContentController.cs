@@ -61,8 +61,7 @@ namespace netcoreservice.Service.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("binary")]
-        [HttpGet("{id}")]
+        [HttpGet("binary/{id}")]
         public async Task<IActionResult> GetBinary(string id)
         {
             var result = await _repo.GetAsync(id);

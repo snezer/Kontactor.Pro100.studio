@@ -104,5 +104,23 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
+        /// <summary>
+        /// Подтверждение сотрудником УК бронирования помещения
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("validate")]
+        public async Task<IActionResult> ValidateBooking(BookingValidationModel model)
+        {
+            var booking = await _rents.GetAsync(model.RentInfoId);
+            if (booking == null)
+                return NotFound();
+            booking.IsValidated = true;
+            booking.ValidatedByUser = model.UserId;
+            var result = await _rents.UpdateAsync(booking);
+            return Ok(result);
+        }
+
     }
 }
