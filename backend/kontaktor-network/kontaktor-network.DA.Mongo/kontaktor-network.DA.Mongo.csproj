@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>KONTAKTOR.DA.Mongo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\kontaktor-network.DA.Models\kontaktor-network.DA.Models.csproj" />
+    <ProjectReference Include="..\kontaktor-network.DA\kontaktor-network.DA.csproj" />
+  </ItemGroup>
+
+</Project>

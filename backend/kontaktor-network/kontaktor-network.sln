@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kontaktor-network.Service", "kontaktor-network.Service\kontaktor-network.Service.csproj", "{4BF9DC59-B08D-40BA-BEF3-848BD920346D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{0C6F8AF4-F675-4322-BCF4-8337904452A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kontaktor-network.DA", "kontaktor-network.DA\kontaktor-network.DA.csproj", "{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kontaktor-network.DA.Models", "kontaktor-network.DA.Models\kontaktor-network.DA.Models.csproj", "{ECC083C2-5061-4D3F-8F72-C75AA6846389}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kontaktor-network.DA.Mongo", "kontaktor-network.DA.Mongo\kontaktor-network.DA.Mongo.csproj", "{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Debug|x64.Build.0 = Debug|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Release|x64.ActiveCfg = Release|Any CPU
+		{4BF9DC59-B08D-40BA-BEF3-848BD920346D}.Release|x64.Build.0 = Release|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C}.Release|x64.Build.0 = Release|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389}.Release|x64.Build.0 = Release|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Debug|x64.Build.0 = Debug|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Release|x64.ActiveCfg = Release|Any CPU
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6E8D93A-44C9-4A33-B32A-2E75A92FF43C} = {0C6F8AF4-F675-4322-BCF4-8337904452A9}
+		{ECC083C2-5061-4D3F-8F72-C75AA6846389} = {0C6F8AF4-F675-4322-BCF4-8337904452A9}
+		{330CE920-84E4-44B1-8D8D-FA5961D3B4DB} = {0C6F8AF4-F675-4322-BCF4-8337904452A9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8A3FFCB-B8DC-4413-9702-A78A9DFD2E6F}
+	EndGlobalSection
+EndGlobal
