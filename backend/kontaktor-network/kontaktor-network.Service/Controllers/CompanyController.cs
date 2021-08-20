@@ -10,7 +10,6 @@ using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using KONTAKTOR.Notifications.DA.Interfaces;
-using KONTAKTOR.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,25 +20,38 @@ namespace netcoreservice.Service.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    public class SystemController : ControllerBase
+    public class CompanyController : ControllerBase
     {
-        private RolesSeeder _roles;
-        private UserSeeder _users;
+        private CompanyRepository _repo;
 
         // private readonly log4net.ILog _logger;
-        public SystemController(RolesSeeder roles, UserSeeder users,  IMapper mapper)
+        public CompanyController(CompanyRepository repo, IMapper mapper)
         {
-            _roles = roles;
-            _users = users;
+            _repo = repo;
         }
 
         [HttpPost]
-        [Route("seed")]
-        public async Task<IActionResult> Seed()
+        public async Task<IActionResult> Create(Company model)
         {
-            await _roles.Seed();
-            await _users.Seed();
-            return Ok();
+            var company = await _repo.CreateAsync(model);
+            return Ok(company);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Company model)
+        {
+            var result = await _repo.UpdateAsync(model);
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var result = await _repo.GetAsync(id);
+
+            return result != null
+                ? (IActionResult)Ok(result)
+                : NotFound();
         }
 
     }
