@@ -87,7 +87,7 @@ namespace netcoreservice.Service
             {
                 o.AllowAnyMethod()
                     .AllowAnyHeader()
-                    .AllowAnyOrigin()
+                    .SetIsOriginAllowed(_=>true)
                     .AllowCredentials();
             });
                 
