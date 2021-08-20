@@ -2,16 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>CENTROS.SMSNotifications.Service</AssemblyName>
-    <RootNamespace>CENTROS.SMSNotifications.Service</RootNamespace>
+    <AssemblyName>KONTAKTOR.Main.Service</AssemblyName>
+    <RootNamespace>KONTAKTOR.Service</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Dev\CNTS\CENTROS.Notifications\CENTROS.Notifications.Service\CENTROS.Notifications.Service.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
-  </PropertyGroup>
-
-  <ItemGroup>
+    <ItemGroup>
     <Compile Remove="Implementation\**" />
     <Compile Remove="LocalDB\**" />
     <Content Remove="Implementation\**" />
