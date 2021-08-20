@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import HomeInfoLeft from "@/components/Home/HomeInfoLeft";
 import HomeLogin from "@/components/Home/HomeLogin";
+import HomeRegistration from "@/components/Home/HomeRegistration";
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,12 @@ const routes = [
         }
       },
     ]
+  },
+  {
+    path: '/registration',
+    name: 'registration',
+    component: HomeRegistration
+
   },
 ]
 
