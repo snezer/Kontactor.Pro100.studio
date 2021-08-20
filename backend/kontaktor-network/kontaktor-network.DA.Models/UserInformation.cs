@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using KONTAKTOR.DA.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace kontaktor_network.DA.Models
 {
@@ -16,5 +18,11 @@ namespace kontaktor_network.DA.Models
         public string Phone { get; set; }
         public AccountingInformation AccountingInformation { get; set; }
         public string[] SystemRoles { get; set; }
+        /// <summary>
+        /// Является ли арендатором как физическое лицо
+        /// </summary>
+        public bool IsTenant { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string TenancyId { get; set; }
     }
 }

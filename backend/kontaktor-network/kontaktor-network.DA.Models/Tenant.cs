@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace kontaktor_network.DA.Models
 {
-    public class Arendator : BaseModel
+    public class Tenant : BaseModel
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
