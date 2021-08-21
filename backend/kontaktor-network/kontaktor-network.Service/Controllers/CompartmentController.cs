@@ -57,5 +57,12 @@ namespace netcoreservice.Service.Controllers
             return Ok(all);
         }
 
+        [HttpGet("mapid/{id}")]
+        public async Task<IActionResult> GetForMap(string id)
+        {
+            var all = await _repo.GetByMapIdAsync(id);
+            return Ok(all);
+        }
+
     }
 }
