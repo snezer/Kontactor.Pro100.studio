@@ -11,10 +11,12 @@ namespace KONTAKTOR.Service.Services
     public class UserSeeder
     {
         private UserInformationRepository _repo;
+        private TenancyRepository _tenants;
 
-        public UserSeeder(UserInformationRepository repository)
+        public UserSeeder(UserInformationRepository repository, TenancyRepository tenants)
         {
             _repo = repository;
+            _tenants = tenants;
         }
 
         public async Task Seed()
@@ -32,7 +34,7 @@ namespace KONTAKTOR.Service.Services
 
                 );
 
-            await _repo.CreateAsync(
+            var ivanov = await _repo.CreateAsync(
                 new UserInformation()
                 {
                     Login = "ivanov",
@@ -56,8 +58,13 @@ namespace KONTAKTOR.Service.Services
                         MailAdress = "Россия, г. Ульяновск, ул. Садовая, 27 кв.14"
                     }
                 }
-
             );
+
+            await _tenants.CreateAsync(new Tenant()
+            {
+                UserInformationId = ivanov.Id
+            });
+
         }
     }
 }
