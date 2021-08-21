@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using log4net;
+using Newtonsoft.Json;
 
 namespace netcoreservice.Service.Controllers
 {
@@ -27,12 +28,16 @@ namespace netcoreservice.Service.Controllers
     {
         private UserInformationRepository _users;
         private TenancyRepository _tenancy;
+        private EmployeeRepository _employees;
+        private CompanyRepository _companies;
 
         // private readonly log4net.ILog _logger;
-        public UsersController(UserInformationRepository users, TenancyRepository tenancy,  IMapper mapper)
+        public UsersController(UserInformationRepository users, TenancyRepository tenancy, EmployeeRepository employees, CompanyRepository companies,  IMapper mapper)
         {
             _users = users;
             _tenancy = tenancy;
+            _employees = employees;
+            _companies = companies;
         }
 
         [HttpGet]
@@ -89,6 +94,36 @@ namespace netcoreservice.Service.Controllers
             return model.Password == user.Password
                 ? (IActionResult)Ok(model.Login)
                 : NotFound(model.Login);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var user = await _users.FindByLogin(id);
+            if (user == null)
+                return NotFound();
+            UserInformationResult result =
+                JsonConvert.DeserializeObject<UserInformationResult>(JsonConvert.SerializeObject(user));
+            var emplyee = (await _employees.GetAllAsync()).FirstOrDefault(e => e.UserId == user.Id);
+            var tenant =  await _tenancy.GetTenantForUserAsync(user.Id);
+            if (emplyee != null)
+            {
+                var company = await _companies.GetAsync(emplyee.CompanyId);
+                if (company != null)
+                {
+                    result.CompanyId = company.Id;
+                    result.CompanyName = company.Name;
+                    result.IsUK = company.IsMain;
+                    result.IsEmployee = true;
+                    tenant = await _tenancy.GetTenantForCompanyAsync(company.Id);
+                }
+                
+            }
+
+            result.TenantId = tenant?.Id;
+
+
+            return Ok(result);
         }
 
     }

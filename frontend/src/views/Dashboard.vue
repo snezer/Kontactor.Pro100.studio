@@ -89,7 +89,7 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                  <v-list-item-title>Иванов Иван</v-list-item-title>
+                  <v-list-item-title>{{userFIO}}</v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-icon>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "Dashboard",
   data(){
@@ -138,6 +139,9 @@ export default {
         { title: 'Чат', icon: 'mdi-chat', link: '/dashboard/messenger' },
       ],
     }
+  },
+  computed: {
+    ...mapGetters({isAuthenticated:'user/isAuthenticated', userId : 'user/userId', userFIO:'user/userFIO'})
   }
 }
 </script>
