@@ -29,13 +29,18 @@ namespace netcoreservice.Service.Controllers
         private RentFactRepository _rents;
         private ContractGenerationService _generationService;
         private TenancyRepository _tenants;
+        private UserInformationRepository _users;
+        private EmployeeRepository _employees;
 
         // private readonly log4net.ILog _logger;
-        public RentsController(RentFactRepository rents, ContractGenerationService generationService, TenancyRepository tenants)
+        public RentsController(RentFactRepository rents, ContractGenerationService generationService, 
+            TenancyRepository tenants, UserInformationRepository users, EmployeeRepository employees)
         {
             _rents = rents;
             _generationService = generationService;
             _tenants = tenants;
+            _users = users;
+            _employees = employees;
         }
 
         [HttpPost]
@@ -104,6 +109,25 @@ namespace netcoreservice.Service.Controllers
             return result != null
                 ? (IActionResult)Ok(result)
                 : NotFound();
+        }
+
+        [HttpGet("user/{userid}")]
+        public async Task<IActionResult> GetForUser(string userid)
+        {
+            var user = await _users.GetAsync(userid);
+            if (user.IsTenant)
+            {
+                var tenant = await _tenants.GetTenantForUserAsync(userid);
+                return await GetForTenant(tenant.Id);
+            }
+
+            var allEmps = await _employees.GetAllAsync();
+            var empl =  allEmps.FirstOrDefault(e => e.UserId == userid);
+            if (empl == null)
+                return NotFound();
+
+            var tenant2 = await _tenants.GetTenantForCompanyAsync(empl.CompanyId);
+            return await GetForTenant(tenant2.Id);
         }
 
         [HttpGet("{compartmentid}")]
