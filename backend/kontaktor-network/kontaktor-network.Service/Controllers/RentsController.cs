@@ -78,6 +78,16 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _rents.GetAllAsync();
+
+            return result != null
+                ? (IActionResult)Ok(result)
+                : NotFound();
+        }
+
         [HttpGet("{tenantid}")]
         public async Task<IActionResult> GetForTenant(string tenantid)
         {
