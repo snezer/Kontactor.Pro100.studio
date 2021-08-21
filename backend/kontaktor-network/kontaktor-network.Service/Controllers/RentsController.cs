@@ -28,12 +28,14 @@ namespace netcoreservice.Service.Controllers
     {
         private RentFactRepository _rents;
         private ContractGenerationService _generationService;
+        private TenancyRepository _tenants;
 
         // private readonly log4net.ILog _logger;
-        public RentsController(RentFactRepository rents, ContractGenerationService generationService)
+        public RentsController(RentFactRepository rents, ContractGenerationService generationService, TenancyRepository tenants)
         {
             _rents = rents;
             _generationService = generationService;
+            _tenants = tenants;
         }
 
         [HttpPost]
@@ -81,11 +83,17 @@ namespace netcoreservice.Service.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _rents.GetAllAsync();
+            var rents = await _rents.GetAllAsync();
+            var tenants = ( await _tenants.GetAllAsync()).ToDictionary(t=>t.Id);
 
-            return result != null
-                ? (IActionResult)Ok(result)
-                : NotFound();
+            var result = rents.Select(RentModel.From);
+            foreach (var model in result)
+            {
+                model.CompanyId = tenants[model.TenantId].CompanyId;
+                model.UserId = tenants[model.TenantId].UserInformationId;
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("{tenantid}")]
