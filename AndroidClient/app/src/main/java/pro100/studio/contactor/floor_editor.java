@@ -1,22 +1,16 @@
 package pro100.studio.contactor;
 
-import androidx.annotation.FloatRange;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class floor_editor extends AppCompatActivity {
 
@@ -38,7 +32,7 @@ public class floor_editor extends AppCompatActivity {
         btnDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), EventActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WiFiDemoOffise.class);
                 startActivity(intent);
             }
         });
@@ -46,6 +40,7 @@ public class floor_editor extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(), EventActivity.class);
                 startActivity(intent);
             }

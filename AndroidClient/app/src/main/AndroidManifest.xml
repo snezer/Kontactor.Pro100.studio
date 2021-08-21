@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactor">
         <activity
-            android:name=".WiFiSettings"
+            android:name=".WiFiDemoOffise"
             android:exported="true" />
         <activity
             android:name=".floor_editor"
