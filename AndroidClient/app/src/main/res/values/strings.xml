@@ -6,6 +6,17 @@
     <string name="text_body_events">Задложенность</string>
     <string name="btn_demo_text">Демо</string>
     <string name="btn_settings_text">Настройки</string>
+    <string name="tv_room_name">Наименование помещения</string>
+    <string name="tv_room_name_hint">Введите наименование помещения</string>
+    <string name="tv_M_name">Координата М точки</string>
+    <string name="tv_M_name_hint">Введите координату</string>
+    <string name="tv_L_name">Координата L точки</string>
+    <string name="tv_title_name">Настройка позиционирования</string>
+    <string name="tv_point_list_name">Список точек</string>
+    <string name="btn_scan">Сканировать</string>
+    <string name="btn_save">Сохранить</string>
+
+
 
 
 </resources>
