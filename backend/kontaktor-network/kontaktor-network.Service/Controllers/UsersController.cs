@@ -96,16 +96,35 @@ namespace netcoreservice.Service.Controllers
                 : NotFound(model.Login);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
+        [HttpGet("{login}")]
+        public async Task<IActionResult> Get(string login)
         {
-            var user = await _users.FindByLogin(id);
+            var user = await _users.FindByLogin(login);
             if (user == null)
                 return NotFound();
+            var result = await EnrichUserData(user);
+
+            return Ok(result);
+        }
+
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var user = await _users.GetAsync(id);
+            if (user == null)
+                return NotFound();
+            var result = await EnrichUserData(user);
+
+
+            return Ok(result);
+        }
+
+        private async Task<UserInformationResult> EnrichUserData(UserInformation user)
+        {
             UserInformationResult result =
                 JsonConvert.DeserializeObject<UserInformationResult>(JsonConvert.SerializeObject(user));
             var emplyee = (await _employees.GetAllAsync()).FirstOrDefault(e => e.UserId == user.Id);
-            var tenant =  await _tenancy.GetTenantForUserAsync(user.Id);
+            var tenant = await _tenancy.GetTenantForUserAsync(user.Id);
             if (emplyee != null)
             {
                 var company = await _companies.GetAsync(emplyee.CompanyId);
@@ -117,14 +136,10 @@ namespace netcoreservice.Service.Controllers
                     result.IsEmployee = true;
                     tenant = await _tenancy.GetTenantForCompanyAsync(company.Id);
                 }
-                
             }
 
             result.TenantId = tenant?.Id;
-
-
-            return Ok(result);
+            return result;
         }
-
     }
 }
