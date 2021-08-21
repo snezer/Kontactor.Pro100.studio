@@ -14,5 +14,6 @@ namespace kontaktor_network.DA.Models
         public string BankName { get; set; }
         public string Account { get; set; }
         public string CorrAccount { get; set; }
+        public string OGRN;
     }
 }

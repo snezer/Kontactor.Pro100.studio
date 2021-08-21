@@ -15,53 +15,31 @@ namespace KONTRAKTOR.Services.Contract.Letter
 
     
 
-    public class OtherQueryLetterModel : ITemplateDescription<CommonOtherQueryLetterTemplateData>
+    public class ContractLetterModel : ITemplateDescription<CommonContractTemplateData>
     {
-        public CommonOtherQueryLetterTemplateData CommonTemplateData { get; set; }
+        public CommonContractTemplateData CommonTemplateData { get; set; }
         public IParagraph[] DocumentParts { get; set; }
         public IParagraph PartsDivider { get; set; }
     }
 
-    public class CommonOtherQueryLetterTemplateData : ICommonTemplateData
+    public class CommonContractTemplateData : ICommonTemplateData
     {
-
-        /// <summary>
-        /// Номер входящего документа от СДО
-        /// </summary>
-        public string SdoIncomingNumber { get; set; }
-        /// <summary>
-        /// Дата входящего документа от СДО
-        /// </summary>
-        public string SdoIncomingDate { get; set; }
-        /// <summary>
-        /// Номер исходящего документа в СДО
-        /// </summary>
-        public string SdoOutgoingNumber { get; set; }
-        /// <summary>
-        /// Дата исходящего документа в СДО
-        /// </summary>
-        public string SdoOutgoingDate { get; set; }
-        /// <summary>
-        /// Название организации в отношении которой производится ответ
-        /// </summary>
-        public string OrgName { get; set; }
-        /// <summary>
-        /// Адрес организации  в отношении котрой производится ответ
-        /// </summary>
-        public string OrgAddress { get; set; }
-        /// <summary>
-        /// Номер дела (НЕ тоже что запрос)
-        /// </summary>
-        public string DeloNum { get; set; }
-        /// <summary>
-        /// Дата дела
-        /// </summary>
-        public string DeloDate { get; set; }
-        public string RequestNum { get; set; }
-        public string RequestDate { get; set; }
-        public string SignerFIO { get; set; }
-        public string SignerPosition { get; set; }
-        public string BankingSecrecy { get; set; }
+        public string SignPlace { get; set; }
+        public string SignDate { get; set; }
+        public string OwnerStart { get; set; }
+        public string TenantStart { get; set; }
+        public string CommonAddress { get; set; }
+        public string RoomFloor { get; set; }
+        public string MaxFloors { get; set; }
+        public string Area { get; set; }
+        public string RentFrom { get; set; }
+        public string RentTo { get; set; }
+        public string RentRegistration { get; set; }
+        public string RentDataConditions { get; set; }
+        public string RentPaymentConditions { get; set; }
+        public string RentWay { get; set; }
+        public string OwnerReq { get; set; }
+        public string TenantReq { get; set; }
     }
 
 
