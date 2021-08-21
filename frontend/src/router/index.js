@@ -21,6 +21,8 @@ import Workers from "@/components/Dashboard/Workers";
 import Product from "@/components/Dashboard/Product";
 import MapForUser from "@/components/MapForUser";
 import RequestRent from "@/components/Dashboard/RequestRent";
+import ClientCounters from '@/components/Dashboard/Counter/ClientCounters';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -63,6 +65,14 @@ const routes = [
         components: {
           default: Dashboard,
           dashboard: RequestRent
+        }
+      },
+      {
+        path: 'counters',
+        name: 'clientCounters',
+        components: {
+          default: Dashboard,
+          dashboard: ClientCounters
         }
       },
       {
