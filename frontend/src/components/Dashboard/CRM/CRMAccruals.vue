@@ -9,7 +9,7 @@
         {{item.status}}
         <v-btn icon v-if="item.status=='Ожидает оплаты'">
           <v-icon>
-            mdi-pay
+            mdi-credit-card-outline
           </v-icon>
         </v-btn>
       </template>
@@ -51,5 +51,5 @@ export default {
 
 <style scoped lang="sass">
 .accruals-wrapper
-  padding: 1% 5%
+  padding: 50px
 </style>
