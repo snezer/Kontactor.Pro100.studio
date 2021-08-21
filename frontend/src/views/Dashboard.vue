@@ -131,7 +131,7 @@ export default {
       ],
       items: [
         { title: 'Главная', icon: 'mdi-home-city', link:'/dashboard/crm/accruals' },
-        { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
+        { title: 'Показания', link: '/dashboard/counters'},
         { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
         { title: 'Лента', icon: 'mdi-newspaper-variant-outline', link: '/dashboard/news' },
         { title: 'Сотрудники', icon: 'mdi-account', link: '/dashboard/workers' },

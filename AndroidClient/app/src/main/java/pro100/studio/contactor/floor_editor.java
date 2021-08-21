@@ -18,6 +18,7 @@ public class floor_editor extends AppCompatActivity {
     private WebView webView;
     private Button btnDemo;
     private ImageView btnBack;
+    Button btnSettings;
 
     private String FLOOR1 = "";
 
@@ -45,6 +46,16 @@ public class floor_editor extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnSettings = (Button) findViewById(R.id.setting);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), WiFiSettings.class);
+                startActivity(intent);
+            }
+        });
+
 
         LoadData();
     }
