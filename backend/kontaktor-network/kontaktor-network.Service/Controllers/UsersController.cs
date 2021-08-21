@@ -55,12 +55,14 @@ namespace netcoreservice.Service.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserInformation user)
         {
+            var result = await _users.CreateAsync(user);
             if (user.IsTenant && string.IsNullOrWhiteSpace(user.TenancyId))
             {
                 var tenant = await _tenancy.CreateAsync(new Tenant() { UserInformationId = user.Id });
-                user.TenancyId = tenant.Id;
+                result.TenancyId = tenant.Id;
+                await _users.UpdateAsync(result);
             }
-            var result = await _users.CreateAsync(user);
+            
             return Ok(result);
         }
 

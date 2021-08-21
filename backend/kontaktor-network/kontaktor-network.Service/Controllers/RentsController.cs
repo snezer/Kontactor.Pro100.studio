@@ -135,7 +135,7 @@ namespace netcoreservice.Service.Controllers
             await ms.FlushAsync();
             ms.Seek(0, SeekOrigin.Begin);
 
-            return File(ms,  "application/octet-stream", "Контракт.docx");
+            return File(ms, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Контракт.docx");
         }
 
     }

@@ -39,7 +39,7 @@ namespace KONTAKTOR.Service.Services.ContractTempating
             var company = await _companies.GetAsync(tenant.CompanyId);
             var compartment = await _compartments.GetAsync(rent.CompartmentId);
 
-            var templateData = new ContractDataBuilder(rent, tenant, user, company).Build();
+            var templateData = new ContractDataBuilder(rent, tenant, user, company, compartment).Build();
             var templateFullPath = CurrentPathHelper.GetPathToReports() +"\\Data\\contract_template.docx";
             return await _generator.CreateDocumentBodyAsync<CommonContractTemplateData>(templateFullPath, templateData);
         }
