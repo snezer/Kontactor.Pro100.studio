@@ -24,7 +24,7 @@ const actions = {
             // let infoCompany = await APICRMServices.getCompany(rent.companyId)
             return {
                 ...rent,
-                time: `${rent.contractStart} - ${rent.contractEnd}`,
+                time: `${rent.contractStart.substring(0, 10)} / ${rent.contractEnd.substring(0, 10)}`, // последний раз так делаю, честно
                 place: infoRoom.data.name,
                 name: `${infoUser.data.lastName} ${infoUser.data.firstName}`,
             }
