@@ -4,15 +4,15 @@
 
     </div>
     <div class="list-request-rent">
-      {{rents}}
       <h2>Список заявок на аренду</h2>
       <v-data-table :items="rents" :headers="headers">
         <template v-slot:item.id="{ item}">
-          <v-btn outlined @click="validationRent(item.id)" >
+          <v-btn v-if="!item.isValidated" outlined @click="validationRent(item.id)" >
             <v-icon>
               mdi-check
             </v-icon> Подтвердить
           </v-btn>
+          <span v-else>Заявка подтвержденна</span>
         </template>
       </v-data-table>
     </div>

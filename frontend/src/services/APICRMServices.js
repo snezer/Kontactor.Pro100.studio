@@ -49,7 +49,7 @@ async function getRents(){
 }
 
 async function validationRent(validRent){
-    return await axios.post('/api/v1/Rents/validate', {...validRent})
+    return await axios.post('Rents/validate', {...validRent})
 }
 export default {
     createCompany,
