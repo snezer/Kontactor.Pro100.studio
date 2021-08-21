@@ -86,7 +86,7 @@ namespace netcoreservice.Service.Controllers
             var rents = await _rents.GetAllAsync();
             var tenants = ( await _tenants.GetAllAsync()).ToDictionary(t=>t.Id);
 
-            var result = rents.Select(RentModel.From);
+            var result = rents.Select(RentModel.From).ToArray();
             foreach (var model in result)
             {
                 model.CompanyId = tenants[model.TenantId].CompanyId;
