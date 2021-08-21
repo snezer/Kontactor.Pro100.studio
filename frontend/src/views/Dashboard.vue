@@ -56,7 +56,7 @@
       <div class="navigation">
         <v-tabs height="80">
           <v-tab
-                v-for="item in items"
+                v-for="item in navigationMenuItems"
                 link
                 style="min-width: 120px"
                 :to="item.link"
@@ -131,17 +131,29 @@ export default {
       ],
       items: [
         { title: 'Главная', icon: 'mdi-home-city', link:'/dashboard/crm/accruals' },
-        { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
+
         { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
         { title: 'Лента', icon: 'mdi-newspaper-variant-outline', link: '/dashboard/news' },
         { title: 'Сотрудники', icon: 'mdi-account', link: '/dashboard/workers' },
         { title: 'Товары/Услуги', icon: 'mdi-account', link: '/dashboard/product' },
         { title: 'Чат', icon: 'mdi-chat', link: '/dashboard/messenger' },
       ],
+      itemsMenuForUK: [
+        { title: 'Заявки на аренду', link: '/dashboard/uk/request'},
+        { title: 'Показания', link: '/dashboard/uk/request'},
+        { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
+        { title: 'Статистика', link: '/dashboard/uk/request'},
+        { title: 'Сотрудники', icon: 'mdi-account', link: '/dashboard/workers' },
+        { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
+        { title: 'Чат', icon: 'mdi-chat', link: '/dashboard/messenger' },
+      ]
     }
   },
   computed: {
-    ...mapGetters({isAuthenticated:'user/isAuthenticated', userId : 'user/userId', userFIO:'user/userFIO'})
+    ...mapGetters({isAuthenticated:'user/isAuthenticated', userId : 'user/userId', userFIO:'user/userFIO', userUKPersonnel: "user/isUKPersonnel"}),
+    navigationMenuItems(){
+      return this.userUKPersonnel ? this.itemsMenuForUK : this.items ;
+    }
   }
 }
 </script>
@@ -178,7 +190,7 @@ export default {
   height: 64px
   background: #eee
 .navigation
-  padding-left: 50px
+  padding-left: 25px
 .user-info
   width: 100%
   padding-right: 50px
