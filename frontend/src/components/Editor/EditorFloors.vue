@@ -29,7 +29,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-        <v-btn icon v-show="showBtnEdit" small @click="onButtonClick">
+        <v-btn icon  small @click="onButtonClick">
           <input
               accept="image/png, image/jpeg, image/bmp"
               multiple
@@ -41,7 +41,7 @@
           />
           <v-icon small>mdi-image-plus</v-icon>
         </v-btn>
-        <v-btn  v-show="showBtnEdit"
+        <v-btn
                 small
                 icon
                 @click="deleteFloor(activeFloorId)"
@@ -65,9 +65,7 @@
               isSelecting: false,
             }
         },
-        props:{
-          showBtnEdit: Boolean
-        },
+
         computed:{
             ...mapState('editor', {
                 floors: 'floors',

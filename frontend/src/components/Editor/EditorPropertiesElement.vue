@@ -215,8 +215,9 @@ import {mapState, mapActions, mapGetters} from 'vuex'
             })
         },
       watch:{
-          selectHomeElement(){
-            this.getInfoRoom()
+          async selectHomeElement(){
+            console.log(1)
+            await this.getInfoRoom()
           }
       },
         methods:{
@@ -263,9 +264,19 @@ import {mapState, mapActions, mapGetters} from 'vuex'
               this.saveInfoRoomLoading = false
             },
             async getInfoRoom(){
-              this.infoRoom ={}
-              const infoRoom = await APICRMServices.getInfoRoomByMapId(this.selectedHomeElement.id)
-              this.infoRoom = infoRoom.data
+              this.infoRoom ={name: '',
+                shortNameOrCode: '',
+                isForRent: false,
+                isForLongTemRent: true,
+                area: 0,
+                mapRoomId:'',
+                maxPeopleNumber: 0,}
+                const infoRoom1 = await APICRMServices.getInfoRoomByMapId(this.selectedHomeElement.id)
+                if (typeof (infoRoom1.data)=='object'){
+                  this.infoRoom = infoRoom1.data
+                }
+
+
             }
         },
         mounted() {
