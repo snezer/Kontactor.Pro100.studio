@@ -57,6 +57,11 @@ namespace netcoreservice.Service.Controllers
             return Ok(all);
         }
 
+        /// <summary>
+        /// Получение комнаты по id на карте (roommapid)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("mapid/{id}")]
         public async Task<IActionResult> GetForMap(string id)
         {
