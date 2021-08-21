@@ -27,6 +27,7 @@ namespace KONTAKTOR.DA.Models
     {
         public bool IsActive { get; set; }
         public string UserId { get; set; }
+        public string CompanyId { get; set; }
         public string[] Roles { get; set; }
     }
 

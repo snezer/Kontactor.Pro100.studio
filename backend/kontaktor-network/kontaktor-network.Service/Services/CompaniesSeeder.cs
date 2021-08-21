@@ -24,7 +24,7 @@ namespace KONTAKTOR.Service.Services
         public async Task Seed()
         {
             await _comps.RemoveAll();
-            await _comps.CreateAsync(new Company()
+            var uk = await _comps.CreateAsync(new Company()
             {
                 Name = "ООО УК КОНТАКТОР",
                 Description= "Управляющая компания креативного кластера",
@@ -49,7 +49,8 @@ namespace KONTAKTOR.Service.Services
             {
                 IsActive = true,
                 Roles = new[] {"Company.Director", "Company.User"},
-                UserId = admin.Id
+                UserId = admin.Id,
+                CompanyId = uk.Id
             });
         }
     }
