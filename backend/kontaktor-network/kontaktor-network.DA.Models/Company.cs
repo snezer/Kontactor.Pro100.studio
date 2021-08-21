@@ -23,6 +23,8 @@ namespace KONTAKTOR.DA.Models
         public bool IsMain { get; set; }
     }
 
+    
+
     public class Employee : BaseModel
     {
         public bool IsActive { get; set; }
