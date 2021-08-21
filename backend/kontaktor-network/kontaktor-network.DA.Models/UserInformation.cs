@@ -9,6 +9,7 @@ namespace kontaktor_network.DA.Models
 {
     public class UserInformation : BaseModel
     {
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
@@ -31,5 +32,10 @@ namespace kontaktor_network.DA.Models
         /// </summary>
         [BsonRepresentation(BsonType.ObjectId)]
         public string TenancyId { get; set; }
+        /// <summary>
+        /// Является ИП
+        /// </summary>
+        public bool IsIP { get; set; }
+        
     }
 }

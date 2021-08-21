@@ -38,5 +38,9 @@ namespace KONTAKTOR.DA.Models
         /// Максимальное количество размещаемых людей
         /// </summary>
         public int MaxPeopleNumber { get; set; }
+        /// <summary>
+        /// Этаж помещения
+        /// </summary>
+        public int Floor { get; set; }
     }
 }

@@ -19,6 +19,7 @@ using KONTAKTOR.DA.Mongo;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using KONTAKTOR.Service.Services;
+using KONTAKTOR.Service.Services.ContractTempating;
 using Prometheus;
 using Prometheus.SystemMetrics;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -95,6 +96,9 @@ namespace netcoreservice.Service
 
             services.AddSingleton<RolesSeeder>();
             services.AddSingleton<UserSeeder>();
+
+            services.AddSingleton<DocXGenerationService>();
+            services.AddSingleton<ContractGenerationService>();
 
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddAutoMapper(typeof(CompanyMappingProfile));

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using KONTAKTOR.Notifications.DA.Interfaces;
 using KONTAKTOR.Service.Models;
+using KONTAKTOR.Service.Services.ContractTempating;
 using KONTRAKTOR.DA.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +27,13 @@ namespace netcoreservice.Service.Controllers
     public class RentsController : ControllerBase
     {
         private RentFactRepository _rents;
+        private ContractGenerationService _generationService;
 
         // private readonly log4net.ILog _logger;
-        public RentsController(RentFactRepository rents, IMapper mapper)
+        public RentsController(RentFactRepository rents, ContractGenerationService generationService)
         {
             _rents = rents;
+            _generationService = generationService;
         }
 
         [HttpPost]
@@ -120,6 +124,18 @@ namespace netcoreservice.Service.Controllers
             booking.ValidatedByUser = model.UserId;
             var result = await _rents.UpdateAsync(booking);
             return Ok(result);
+        }
+
+        [HttpGet("contract/blob/{rentId}")]
+        public async Task<IActionResult> GetContractBlob(string rentId)
+        {
+            var data = await _generationService.CreateContract(rentId);
+            var ms = new MemoryStream();
+            await ms.WriteAsync(data, 0, data.Length);
+            await ms.FlushAsync();
+            ms.Seek(0, SeekOrigin.Begin);
+
+            return File(ms, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Контракт.docx");
         }
 
     }
