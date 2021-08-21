@@ -9,4 +9,5 @@
     <color name="btn_black">#1d1d1d</color>
     <color name="font_black">#1d1d1d</color>
     <color name="white">#FFFFFFFF</color>
+    <!--<color name="invisible_color">#00FFFFFFF</color>-->
 </resources>
