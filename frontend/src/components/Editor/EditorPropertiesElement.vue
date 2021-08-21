@@ -1,43 +1,6 @@
 <template>
-  <v-card flat>
-    <v-tabs v-model="tabInfoModel">
-      <v-tabs-slider color="blue"></v-tabs-slider>
-      <v-tab key="stat">
-        Статистика
-      </v-tab>
-      <v-tab key="company">
-        О компании
-      </v-tab>
-    </v-tabs>
-    <v-tabs-items v-model="tabInfoModel">
-      <v-tab-item key="stat" style="padding: 10px">
+  <v-card flat style="padding: 10px">
         <v-row>
-          <v-col sm="12">
-              <v-row align-content="center" justify="center">
-                <v-col class="text-center">
-                  <v-badge overlap bordered content="3" color="green">
-                  <v-btn icon small>
-                      <v-icon color="">
-                        mdi-bell-outline
-                      </v-icon>
-                  </v-btn>
-                  </v-badge>
-                  <br>
-                  Входящие
-                </v-col>
-                <v-col class="text-center">
-                  <v-badge overlap bordered content="1" color="red">
-                    <v-btn icon small>
-                      <v-icon>
-                        mdi-alert-circle-outline
-                      </v-icon>
-                    </v-btn>
-                  </v-badge>
-                  <br>
-                  Запросы
-                </v-col>
-              </v-row>
-          </v-col>
           <v-col sm="12">
             <v-card flat>
               <v-card-title>Календарь</v-card-title>
@@ -99,7 +62,100 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-row v-show="publicMap">
+        <v-row>
+          <v-col lg="4">
+            <v-menu
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                :return-value.sync="startDate"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                    v-model="startDate"
+                    label="Начало аренды"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                  v-model="startDate"
+                  no-title
+                  scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                    text
+                    color="primary"
+                    @click="menu = false"
+                >
+                  Закрыть
+                </v-btn>
+                <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu.save(startDate)"
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+          </v-col>
+          <v-col lg="4">
+            <v-menu
+                ref="menu"
+                v-model="menu1"
+                :close-on-content-click="false"
+                :return-value.sync="endDate"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                    v-model="endDate"
+                    label="Конец аренды"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                  v-model="endDate"
+                  no-title
+                  scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                    text
+                    color="primary"
+                    @click="menu1 = false"
+                >
+                  Закрыть
+                </v-btn>
+                <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu.save(endDate)"
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+          </v-col>
+          <v-col>
+            <v-btn outlined block color="red" @click="createRents">
+              Арендовать
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row v-show="isUkPersonnel">
           <v-col>
             <v-btn @click="deleteElement" class="error">
               Удалить
@@ -111,52 +167,11 @@
             </v-btn>
           </v-col>
         </v-row>
-      </v-tab-item>
-      <v-tab-item key="company" style="padding: 10px">
-        <v-card flat>
-          <v-row style="margin-top: 25px">
-            <v-col cols="12">
-              <span class="subtitle-2">Общие данные</span>
-            </v-col>
-            <v-col lg="12">
-              <v-text-field dense label="Наименование"></v-text-field>
-            </v-col>
-            <v-col lg="12">
-              <v-text-field dense label="Вид деятельности"></v-text-field>
-            </v-col>
-            <v-col lg="12">
-              <v-text-field dense label="Юр. адрес"></v-text-field>
-            </v-col>
-            <v-col lg="12">
-              <v-text-field dense label="Почтовый адрес"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <span class="subtitle-2">Экономическая информация</span>
-            </v-col>
-            <v-col lg="6">
-              <v-text-field dense label="ИНН"></v-text-field>
-            </v-col>
-            <v-col lg="6">
-              <v-text-field dense label="Банк"></v-text-field>
-            </v-col>
-            <v-col lg="6">
-              <v-text-field dense label="БИК"></v-text-field>
-            </v-col>
-            <v-col lg="6">
-              <v-text-field  v-model="publicMap" dense label="Рас./счёт"></v-text-field>
-            </v-col>
-            <v-col lg="6">
-              <v-text-field dense label="Корр./счёт"></v-text-field>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
   </v-card>
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapGetters} from 'vuex'
     import APICRMServices from "@/services/APICRMServices";
     export default {
         name: "EditorPropertiesElement",
@@ -165,6 +180,10 @@
       },
         data(){
             return{
+              startDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+              endDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+              menu: false,
+              menu1: false,
               saveInfoRoomLoading: false,
               tabInfoModel: 'stat',
               name:'',
@@ -188,6 +207,11 @@
                 selectNode: 'selectNode',
                 nodeElements: 'nodeElements',
                 homeElements: 'homeElements',
+            }),
+            ...mapGetters('user',{
+                isUkPersonnel: 'isUKPersonnel',
+                tenantId: 'tenantId',
+                userId: 'userId'
             })
         },
       watch:{
@@ -219,6 +243,17 @@
                 }
                 this.unselect()
             },
+          async createRents(){
+              const result = await APICRMServices.createRents({
+                tenantId: this.tenantId,
+                compartmentId: this.infoRoom.id,
+                from: this.startDate,
+                to: this.endDate
+              })
+              if (result) {
+                console.log(result)
+              }
+          },
             async saveInfoRoom(){
               this.infoRoom.mapRoomId = this.selectedHomeElement.id
               this.infoRoom.area = Number(this.infoRoom.area)
