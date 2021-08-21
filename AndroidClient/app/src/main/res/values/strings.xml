@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Contactor</string>
     <string name="btm_login">Войти</string>
+    <string name="activity_event">Событыия</string>
+
+
 </resources>
