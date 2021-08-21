@@ -119,7 +119,7 @@ const actions = {
     async select_home_element({commit, dispatch}, data){
         dispatch('unselect_node')
         const infoRoom =await APICRMServices.getInfoRoomByMapId(data.id)
-        commit('SAVE_SELECTED_HOME_ELEMENT', {...infoRoom, ...data})
+        commit('SAVE_SELECTED_HOME_ELEMENT', {...infoRoom.data, ...data})
     },
     async delete_home_element({ dispatch, state}, data){
         const numberHomeElement = state.homeElements.indexOf(data)

@@ -21,8 +21,8 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-subtitle>Название площадки</v-list-item-subtitle>
-                    <v-list-item-title>Еще какой-то текст</v-list-item-title>
+                    <v-list-item-subtitle>IT Hub</v-list-item-subtitle>
+                    <v-list-item-title>Программируем и пьем кофе</v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-icon>
@@ -131,7 +131,7 @@ export default {
       ],
       items: [
         { title: 'Главная', icon: 'mdi-home-city', link:'/dashboard/crm/accruals' },
-
+        { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
         { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
         { title: 'Лента', icon: 'mdi-newspaper-variant-outline', link: '/dashboard/news' },
         { title: 'Сотрудники', icon: 'mdi-account', link: '/dashboard/workers' },
@@ -140,9 +140,9 @@ export default {
       ],
       itemsMenuForUK: [
         { title: 'Заявки на аренду', link: '/dashboard/uk/request'},
-        { title: 'Показания', link: '/dashboard/uk/request'},
+        { title: 'Показания', link: '/dashboard/uk/counter'},
         { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
-        { title: 'Статистика', link: '/dashboard/uk/request'},
+        { title: 'Статистика', link: '/dashboard/uk/stat'},
         { title: 'Сотрудники', icon: 'mdi-account', link: '/dashboard/workers' },
         { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
         { title: 'Чат', icon: 'mdi-chat', link: '/dashboard/messenger' },
