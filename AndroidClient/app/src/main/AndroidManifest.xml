@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactor">
+        <activity
+            android:name=".floor_editor"
+            android:exported="true" />
+
         <service
             android:name=".ScanWiFiService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".EventActivity"
