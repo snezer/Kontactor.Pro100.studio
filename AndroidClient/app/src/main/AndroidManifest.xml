@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactor">
         <activity
+            android:name=".WiFiSettings"
+            android:exported="true" />
+        <activity
             android:name=".WiFiDemoOffise"
             android:exported="true" />
         <activity

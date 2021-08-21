@@ -40,16 +40,36 @@ public class EventActivity extends AppCompatActivity {
         String body2 = "Картинки-пати! Объявлен день настоящего питона. Заходи пиши код и получай призы!";
         eventList[2] = new EventCard("2", subject2, body2, false);
         String subject3 = "Администрация";
-        String body3 = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
+        String body3 = "Задолженность по аренде. Необходимо оплатить в течении 10 рабочих дней.";
         eventList[3] = new EventCard("1", subject3, body3, false);
 
         AdapterEvent adapterEvent = new AdapterEvent(this);
-        ListView eventList = (ListView) findViewById(R.id.events);
-        eventList.setAdapter(adapterEvent);
-        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        ListView eventList1 = (ListView) findViewById(R.id.events);
+        eventList1.setAdapter(adapterEvent);
+        eventList1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(getApplicationContext(), floor_editor.class);
-                startActivity(intent);
+                switch (position){
+                    case 0:
+                        Intent intent = new Intent(getApplicationContext(), floor_editor.class);
+                        startActivity(intent);
+                        break;
+                }
+                /*for (EventCard item : eventList) {
+                    item.setActiv(false);
+                    ImageView icon = (ImageView) view.findViewById(R.id.icons);
+                    if (item.getActiv()){
+                        icon.setImageResource(R.drawable.ic_rect);
+                    }else {
+                        icon.setImageResource(R.drawable.ic_rect_gray);
+                    }
+                }
+                eventList[position].setActiv(true);
+                ImageView icon = (ImageView) view.findViewById(R.id.icons);
+                if (eventList[position].getActiv()){
+                    icon.setImageResource(R.drawable.ic_rect);
+                }else {
+                    icon.setImageResource(R.drawable.ic_rect_gray);
+                }*/
             }
         });
     }
