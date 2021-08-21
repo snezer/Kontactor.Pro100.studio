@@ -9,7 +9,7 @@
               depressed
 
           >
-            {{ nameMenu }} этаж
+            этажи
             <v-icon x-small right>
               mdi-menu-down
             </v-icon>
@@ -66,7 +66,7 @@
             }
         },
         props:{
-          showBtnEdit: false
+          showBtnEdit: Boolean
         },
         computed:{
             ...mapState('editor', {

@@ -92,6 +92,13 @@
                 label="Только для персонала"/>
           </v-col>
         </v-row>
+        <v-row v-show="!publicMap">
+          <v-col>
+            <v-btn block outlined color="primary" link to="/registration">
+              Арендовать
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-row v-show="publicMap">
           <v-col>
             <v-btn @click="deleteElement" class="error">
@@ -136,7 +143,7 @@
               <v-text-field dense label="БИК"></v-text-field>
             </v-col>
             <v-col lg="6">
-              <v-text-field dense label="Рас./счёт"></v-text-field>
+              <v-text-field  v-model="publicMap" dense label="Рас./счёт"></v-text-field>
             </v-col>
             <v-col lg="6">
               <v-text-field dense label="Корр./счёт"></v-text-field>

@@ -21,8 +21,8 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-subtitle>Name rent place</v-list-item-subtitle>
-                    <v-list-item-title>Custom name rent place</v-list-item-title>
+                    <v-list-item-subtitle>Название площадки</v-list-item-subtitle>
+                    <v-list-item-title>Еще какой-то текст</v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-icon>
@@ -89,7 +89,7 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                  <v-list-item-title>John Leider</v-list-item-title>
+                  <v-list-item-title>Иванов Иван</v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-icon>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-virtual-scroll height="850px" :items="items" item-height="280px" class="messages-wrapper">
-      <template v-slot:default="{ item }">
+    <v-virtual-scroll height="650px" :items="items" item-height="280px" class="messages-wrapper">
+      <template v-slot:default="{ }">
         <message ></message>
       </template>
     </v-virtual-scroll>
