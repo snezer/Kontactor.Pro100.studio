@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactor">
+        <service
+            android:name=".ScanWiFiService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".EventActivity"
-            android:label="События"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
