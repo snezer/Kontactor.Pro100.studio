@@ -25,12 +25,14 @@ namespace netcoreservice.Service.Controllers
     {
         private RolesSeeder _roles;
         private UserSeeder _users;
+        private CompaniesSeeder _comps;
 
         // private readonly log4net.ILog _logger;
-        public SystemController(RolesSeeder roles, UserSeeder users,  IMapper mapper)
+        public SystemController(RolesSeeder roles, UserSeeder users,  CompaniesSeeder comps)
         {
             _roles = roles;
             _users = users;
+            _comps = comps;
         }
 
         /// <summary>
@@ -43,6 +45,7 @@ namespace netcoreservice.Service.Controllers
         {
             await _roles.Seed();
             await _users.Seed();
+            await _comps.Seed();
             return Ok();
         }
 

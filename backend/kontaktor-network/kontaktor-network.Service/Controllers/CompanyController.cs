@@ -54,5 +54,15 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _repo.GetAllAsync();
+
+            return result != null
+                ? (IActionResult)Ok(result)
+                : NotFound();
+        }
+
     }
 }

@@ -47,7 +47,8 @@ namespace netcoreservice.Service.Controllers
                     MiddleName = u.MiddleName,
                     Login = u.Login,
                     Phone = u.Phone,
-                    Email = u.Email
+                    Email = u.Email,
+                    TenancyId = u.TenancyId
                 })
                 );
         }

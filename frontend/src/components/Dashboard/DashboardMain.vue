@@ -2,7 +2,13 @@
   <div class="dashboard-main-wrapper">
     <div class="dashboard-main-menu">
       <v-list >
-        <v-list-item v-for="item in itemsMenu" link :to="item.link" :key="item.title">
+        <v-list-group
+            :value="true"
+        >
+          <template v-slot:activator>
+            <v-list-item-title>Объект</v-list-item-title>
+          </template>
+        <v-list-item v-for="item in itemsMenu1" link :to="item.link" :key="item.title">
           <v-list-item-avatar>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-avatar>
@@ -12,6 +18,25 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        </v-list-group>
+        <v-list-group
+        :value="true"
+        no-action
+        >
+        <template v-slot:activator>
+          <v-list-item-title>Общие</v-list-item-title>
+        </template>
+        <v-list-item v-for="item in itemsMenu2" link :to="item.link" :key="item.title">
+          <v-list-item-avatar>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{item.title}}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        </v-list-group>
       </v-list>
     </div>
     <div class="dashboard-main-content">
@@ -25,15 +50,10 @@ export default {
   name: "DashboardMain",
   data(){
     return{
-      itemsMenu: [
+      itemsMenu1: [
         {
           title: 'Начисления',
           link: '/dashboard/crm/accruals',
-          icon: 'mdi-account-cash-outline'
-        },
-        {
-          title: 'История оплат',
-          link: '/dashboard/crm/payment',
           icon: 'mdi-account-cash-outline'
         },
         {
@@ -46,6 +66,8 @@ export default {
           link: '/dashboard/crm/file',
           icon: 'mdi-account-cash-outline'
         },
+    ],
+      itemsMenu2: [
         {
           title: 'Обращения',
           link: '/dashboard/crm/appeal',
@@ -54,11 +76,6 @@ export default {
         {
           title: 'Контакты',
           link: '/dashboard/crm/contact',
-          icon: 'mdi-account-cash-outline'
-        },
-        {
-          title: 'Позвонить',
-          link: '/dashboard/crm/call',
           icon: 'mdi-account-cash-outline'
         },
       ]

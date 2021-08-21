@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-virtual-scroll height="925px" :items="items" item-height="75px">
+    <v-virtual-scroll height="800px" :items="items" item-height="75px">
       <template v-slot:default="{ item }">
         <chat-room-channel :key="item"></chat-room-channel>
       </template>
