@@ -33,7 +33,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters({isAuthenticated:'user/isAuthenticated'})
+    ...mapGetters({isAuthenticated:'user/isAuthenticated', isUKPersonnel: 'user/isUKPersonnel'})
   },
   methods:
     {
@@ -43,7 +43,8 @@ export default {
         const result = await this.logon({login: self.login, password: self.password})
         this.loading = false
         if (this.isAuthenticated){
-          this.$router.push({name:'accruals'})
+          const nameRoute = this.isUKPersonnel ? 'requestRent' : 'accruals'
+          this.$router.push({name: nameRoute})
         }
       },
       async logon(credentials){
