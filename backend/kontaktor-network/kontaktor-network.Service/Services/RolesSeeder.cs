@@ -24,7 +24,11 @@ namespace KONTAKTOR.Service.Services
                 Name = "System.Admin",
                 Description = "Системный администратор"
             });
-            
+            await _repo.CreateAsync(new UserRole()
+            {
+                Name = "System.User",
+                Description = "Пользователь системы"
+            });
             await _repo.CreateAsync(new UserRole()
             {
                 Name = "Company.Employee",

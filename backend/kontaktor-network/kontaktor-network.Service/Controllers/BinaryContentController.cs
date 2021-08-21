@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,6 +56,25 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
-        
+        /// <summary>
+        /// Взять блоб как есть без кодировки
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("binary/{id}")]
+        public async Task<IActionResult> GetBinary(string id)
+        {
+            var result = await _repo.GetAsync(id);
+            if (result == null)
+                return NotFound();
+            var  ms = new MemoryStream();
+            await ms.WriteAsync(result.Content, 0, result.Content.Length);
+            await ms.FlushAsync();
+            ms.Seek(0, SeekOrigin.Begin);
+
+            return File(ms, result.ContentType ?? "application/octet-stream", result.Filename);
+        }
+
+
     }
 }

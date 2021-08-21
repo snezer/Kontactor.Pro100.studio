@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactor">
         <activity
+            android:name=".EventActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Contactor.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Contactor.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -26,11 +26,13 @@ namespace netcoreservice.Service.Controllers
     public class UsersController : ControllerBase
     {
         private UserInformationRepository _users;
+        private TenancyRepository _tenancy;
 
         // private readonly log4net.ILog _logger;
-        public UsersController(UserInformationRepository users,  IMapper mapper)
+        public UsersController(UserInformationRepository users, TenancyRepository tenancy,  IMapper mapper)
         {
             _users = users;
+            _tenancy = tenancy;
         }
 
         [HttpGet]
@@ -53,8 +55,27 @@ namespace netcoreservice.Service.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserInformation user)
         {
-            await _users.CreateAsync(user);
-            return Ok();
+            var result = await _users.CreateAsync(user);
+            if (user.IsTenant && string.IsNullOrWhiteSpace(user.TenancyId))
+            {
+                var tenant = await _tenancy.CreateAsync(new Tenant() { UserInformationId = user.Id });
+                result.TenancyId = tenant.Id;
+                await _users.UpdateAsync(result);
+            }
+            
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UserInformation user)
+        {
+            if (user.IsTenant &&  string.IsNullOrWhiteSpace(user.TenancyId))
+            {
+                var tenant = await _tenancy.CreateAsync(new Tenant() {UserInformationId = user.Id});
+                user.TenancyId = tenant.Id;
+            }
+            var result = await _users.UpdateAsync(user);
+            return Ok(result);
         }
 
         [HttpPost]

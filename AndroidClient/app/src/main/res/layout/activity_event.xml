@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/event"
+    tools:context=".EventActivity">
+
+    <TextView
+        android:id="@+id/tvEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="События"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <LinearLayout
+        android:id="@+id/eventsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_below="@+id/tvEvents"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollingCache="true"
+            android:smoothScrollbar="true"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_obsoluteX="2dp"
+            tools:layout_editor_obsolutey="76dp">
+
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventsLayout"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom">
+        <ImageView
+            android:id="@+id/btn_news"
+            android:layout_width="87dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_news"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/btn_club"
+            android:layout_width="87dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_club"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/btn_chat"
+            android:layout_width="87dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chat"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/btn_prof"
+            android:layout_width="87dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_prof"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>
