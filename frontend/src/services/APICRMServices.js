@@ -10,6 +10,10 @@ async function  createCompany(company){
     return await axios.post('Company', {...company})
 }
 
+async function getCompany(id){
+    return await axios.get(`Company/${id}`);
+}
+
 async function getUserByLogin(login){
     return await axios.get(`Users/${login}`);
 }
@@ -17,7 +21,6 @@ async function getUserByLogin(login){
 async function checkUser(login, password){
     return await axios.post('Users/check',{login: login, password: password})
 }
-
 
 
 async function saveInfoRoom(infoRoom){
@@ -36,5 +39,6 @@ export default {
     saveInfoRoom,
     getInfoRoom,
     getInfoRoomByMapId,
-    getUserByLogin
+    getUserByLogin,
+    getCompany
 }

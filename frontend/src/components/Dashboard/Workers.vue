@@ -88,8 +88,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "Workers",
+  computed: {
+    ...mapGetters({
+      companyId: 'user/companyId'
+    })
+  },
   data () {
     return {
       search: '',
