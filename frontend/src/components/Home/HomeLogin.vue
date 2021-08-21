@@ -21,6 +21,8 @@
 
 <script>
 import APICRMServices from "@/services/APICRMServices";
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
   name: "HomeLogin",
   data(){
@@ -30,16 +32,26 @@ export default {
       loading: false,
     }
   },
-  methods:{
-    async checkUser(){
-      this.loading = true
-        const result = await APICRMServices.checkUser(this.login,this.password)
-      this.loading = false
-      if (result){
-        this.$router.push({name:'accruals'})
-      }
+  computed:{
+    ...mapGetters({isAuthenticated:'user/isAuthenticated'})
+  },
+  methods:
+    {
+      async checkUser(){
+        this.loading = true;
+        let self = this;
+        const result = await this.logon({login: self.login, password: self.password})
+        this.loading = false
+        if (this.isAuthenticated){
+          this.$router.push({name:'accruals'})
+        }
+      },
+      async logon(credentials){
+        await this.$store.dispatch('user/logon', credentials);
+      }      
     }
-  }
+    
+  
 }
 </script>
 

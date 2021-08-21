@@ -23,5 +23,7 @@ namespace KONTAKTOR.DA.Mongo.Repository
             var users = await _collection.FindAsync(u => u.Login == modelLogin);
             return users.SingleOrDefault();
         }
+
+       
     }
 }

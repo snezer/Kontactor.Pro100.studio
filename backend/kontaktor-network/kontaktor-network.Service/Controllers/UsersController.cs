@@ -91,5 +91,15 @@ namespace netcoreservice.Service.Controllers
                 : NotFound(model.Login);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var result = await _users.FindByLogin(id);
+
+            return result != null
+                ? (IActionResult)Ok(result)
+                : NotFound();
+        }
+
     }
 }

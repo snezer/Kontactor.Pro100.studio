@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = `https://01fe1d0d97fb.ngrok.io/api/v1/`
+axios.defaults.baseURL = `https://localhost:50000/api/v1/`
 
 async function createUser(user){
     return await axios.post('Users', {...user})
@@ -9,9 +9,17 @@ async function createUser(user){
 async function  createCompany(company){
     return await axios.post('Company', {...company})
 }
+
+async function getUserByLogin(login){
+    return await axios.get(`Users/${login}`);
+}
+
 async function checkUser(login, password){
     return await axios.post('Users/check',{login: login, password: password})
 }
+
+
+
 async function saveInfoRoom(infoRoom){
 
     return await axios.post('Compartment', {...infoRoom})
@@ -28,4 +36,5 @@ export default {
     saveInfoRoom,
     getInfoRoom,
     getInfoRoomByMapId,
+    getUserByLogin
 }
