@@ -11,8 +11,8 @@
         android:theme="@style/Theme.Contactor">
         <activity
             android:name=".EventActivity"
-            android:label="События"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
