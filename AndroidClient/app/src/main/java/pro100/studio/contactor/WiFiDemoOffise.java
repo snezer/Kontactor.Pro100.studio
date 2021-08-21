@@ -2,12 +2,14 @@ package pro100.studio.contactor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class WiFiDemoOffise extends AppCompatActivity {
 
@@ -226,6 +228,7 @@ public class WiFiDemoOffise extends AppCompatActivity {
 
     Button btnSetOnImg;
     Button btnMoveOnImg;
+    ImageView btnBack;
     int iter = 1;
 
     @Override
@@ -235,6 +238,14 @@ public class WiFiDemoOffise extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.wv);
         LoadData(-125, -175);
+        btnBack = (ImageView) findViewById(R.id.back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), floor_editor.class);
+                startActivity(intent);
+            }
+        });
 
         /*btnSetOnImg = (Button) findViewById(R.id.btnSet);
         btnSetOnImg.setOnClickListener(new View.OnClickListener() {

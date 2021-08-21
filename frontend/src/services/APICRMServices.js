@@ -37,6 +37,10 @@ async function getInfoRoom(idRoom){
 async function getInfoRoomByMapId(mapRoomId){
     return await axios.get(`Compartment/mapid/${mapRoomId}`)
 }
+
+async function createRents(rents){
+    return await axios.post('Rents/book', {...rents})
+}
 export default {
     createCompany,
     checkUser,
@@ -45,5 +49,6 @@ export default {
     getInfoRoomByMapId,
     getUserByLogin,
     getCompany,
-    getCompanyEmployees
+    getCompanyEmployees,
+    createRents,
 }
