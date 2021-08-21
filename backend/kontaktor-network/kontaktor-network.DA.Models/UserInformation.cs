@@ -31,5 +31,9 @@ namespace kontaktor_network.DA.Models
         /// </summary>
         [BsonRepresentation(BsonType.ObjectId)]
         public string TenancyId { get; set; }
+        /// <summary>
+        /// Является ИП
+        /// </summary>
+        public bool IsIP { get; set; }
     }
 }
