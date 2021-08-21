@@ -60,7 +60,8 @@ public class ScanWiFiService extends Service {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_WIFI_STATE,
                     Manifest.permission.CHANGE_WIFI_STATE,
-                    Manifest.permission.ACCESS_NETWORK_STATE};
+                    Manifest.permission.ACCESS_NETWORK_STATE,
+                    Manifest.permission.INTERNET};
 
             Permissions perms = new Permissions(permiss, this.context, wifiManager);
             if (perms.hasPermissions()){
