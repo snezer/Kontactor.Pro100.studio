@@ -93,9 +93,13 @@ namespace netcoreservice.Service
             services.AddSingleton<CompartmentRepository>();
             services.AddSingleton<RentFactRepository>();
             services.AddSingleton<MainNewsRepository>();
+            services.AddSingleton<ChatRepository>();
+            services.AddSingleton<MessageRepository>();
+            services.AddSingleton<EmployeeRepository>();
 
             services.AddSingleton<RolesSeeder>();
             services.AddSingleton<UserSeeder>();
+            services.AddSingleton<CompaniesSeeder>();
 
             services.AddSingleton<DocXGenerationService>();
             services.AddSingleton<ContractGenerationService>();

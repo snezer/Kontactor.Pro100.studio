@@ -1,14 +1,23 @@
 package pro100.studio.contactor.ListModels;
 
 public class EventCard {
-    public EventCard(String id, String subject, String body) {
+    public EventCard(String id, String subject, String body, boolean isActiv) {
         Id = id;
         Subject = subject;
         Body = body;
+        IsActiv = isActiv;
     }
 
     public String getId() {
         return Id;
+    }
+
+    public Boolean getActiv() {
+        return IsActiv;
+    }
+
+    public void setActiv(Boolean activ) {
+        IsActiv = activ;
     }
 
     public String getSubject() {
@@ -22,6 +31,7 @@ public class EventCard {
     private  String Id;
     private  String Subject;
     private  String Body;
+    private Boolean IsActiv;
 
     public void setId(String id) {
         Id = id;

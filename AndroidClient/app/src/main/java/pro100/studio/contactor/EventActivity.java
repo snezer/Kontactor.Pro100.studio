@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,16 +27,19 @@ public class EventActivity extends AppCompatActivity {
     }
 
     public void SetDataToEventsList(){
-        eventList = new EventCard[3];
+        eventList = new EventCard[4];
         String subject = "Администрация";
         String body = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
-        eventList[0] = new EventCard("1", subject, body);
-        String subject1 = "Коворкинг";
-        String body1 = "Картинки-пати! Объявлен день настоящего питона. Заходи пиши код и получай призы!";
-        eventList[1] = new EventCard("2", subject1, body1);
-        String subject2 = "Администрация";
-        String body2 = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
-        eventList[2] = new EventCard("1", subject2, body2);
+        eventList[0] = new EventCard("1", subject, body, true);
+        String subject1 = "Администрация";
+        String body1 = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
+        eventList[1] = new EventCard("1", subject1, body1, false);
+        String subject2 = "Коворкинг";
+        String body2 = "Картинки-пати! Объявлен день настоящего питона. Заходи пиши код и получай призы!";
+        eventList[2] = new EventCard("2", subject2, body2, false);
+        String subject3 = "Администрация";
+        String body3 = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
+        eventList[3] = new EventCard("1", subject3, body3, false);
 
         AdapterEvent adapterEvent = new AdapterEvent(this);
         ListView eventList = (ListView) findViewById(R.id.events);
@@ -59,6 +63,15 @@ public class EventActivity extends AppCompatActivity {
 
             TextView eventBody = (TextView) item.findViewById(R.id.text_body);
             eventBody.setText(eventList[pos].getBody());
+
+            boolean isActive = eventList[pos].getActiv();
+            ImageView icon = (ImageView) item.findViewById(R.id.icons);
+            if (isActive){
+                icon.setImageResource(R.drawable.ic_rect);
+            }else {
+                icon.setImageResource(R.drawable.ic_rect_gray);
+            }
+
             return item;
         }
     }
