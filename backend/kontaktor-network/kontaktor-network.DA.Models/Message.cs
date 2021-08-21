@@ -13,6 +13,6 @@ namespace KONTAKTOR.DA.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string ChatId { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Attachment { get; set; }
+        public string AttachmentId { get; set; }
     }
 }

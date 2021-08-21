@@ -9,5 +9,7 @@ namespace KONTAKTOR.DA.Models
         public string Subject { get; set; }
 
         public string ExternalId { get; set; }
+
+        public string[] Users { get; set; }
     }
 }
