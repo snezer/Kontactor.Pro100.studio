@@ -42,7 +42,7 @@
 1) развертывание сервиса производилось на Windows-машине, однако может происходить и на linux-like средах, поддерживаемых .NET Core
 2) требуется установленный паке Docker и docker-compose для автоматизации развёртывания проекта;
 3) Разворачиваем mongo:
-###
+```
 version: "3.7"
 services:
   mongodb:
@@ -67,9 +67,9 @@ services:
       - ME_CONFIG_BASICAUTH_PASSWORD=admin
     ports:
       - '8081:8081'
-
+```
 4) Простой ci процесс на bat:
-###
+```
 sc stop kontaktormn
 :loop
 sc query kontaktormn | find "STOPPED"
@@ -85,7 +85,7 @@ cd C:\Users\fofin\Documents\Work_2020\2021\hack\full-sources\backend\kontaktor-n
 dotnet publish -c Debug -o C:\Users\fofin\Documents\Work_2020\2021\hack\published\kontaktor-network
 
 sc start kontaktormn
-
+```
 5) Имеет смысл зарегистрировать сервис через sc
-### 
-sc create kontaktormn "C:\Users\fofin\Documents\Work_2020\2021\hack\full-sources\backend\kontaktor-network\kontaktor-network.Service\KONTAKTOR.Main.Service.exe"
+ 
+```sc create kontaktormn "C:\Users\fofin\Documents\Work_2020\2021\hack\full-sources\backend\kontaktor-network\kontaktor-network.Service\KONTAKTOR.Main.Service.exe"```
