@@ -24,11 +24,15 @@ namespace netcoreservice.Service.Controllers
     public class CompanyController : ControllerBase
     {
         private CompanyRepository _repo;
+        private EmployeeRepository _employees;
+        private UserInformationRepository _users;
 
         // private readonly log4net.ILog _logger;
-        public CompanyController(CompanyRepository repo, IMapper mapper)
+        public CompanyController(CompanyRepository repo, EmployeeRepository employees, UserInformationRepository users)
         {
             _repo = repo;
+            _employees = employees;
+            _users = users;
         }
 
         [HttpPost]
@@ -65,7 +69,14 @@ namespace netcoreservice.Service.Controllers
                 : NotFound();
         }
 
-        
+        [HttpGet("employees/{companyId}")]
+        public async Task<IActionResult> GetEmployees(string companyId)
+        {
+            var employs=  (await _employees.GetAllAsync()).Where(c => c.CompanyId == companyId);
+            var users = (await _users.GetAllAsync()).Where(u => employs.Select(e => e.UserId).Contains(u.Id));
+
+            return Ok(users);
+        }
 
     }
 }

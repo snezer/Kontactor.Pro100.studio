@@ -77,7 +77,7 @@
             </v-card-title>
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="employees"
                 :search="search"
             ></v-data-table>
           </v-card>
@@ -88,28 +88,46 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: "Workers",
   computed: {
     ...mapGetters({
-      companyId: 'user/companyId'
+      companyId: 'user/companyId',
+      employeesStore : 'company/employees'
+    }),
+    employees : function(){
+      let cId = this.companyId;
+      this.loadCompanyData(cId);
+      return this.employeesStore;
+    }    
+  },
+  methods:{
+    ...mapActions({
+      loadCompanyData : 'company/loadCompany'
     })
   },
+  watch:{
+    companyId : function(oldId, newId){
+      if (newId)
+        this.loadCompanyData(newId);
+    }
+  },
+  
   data () {
     return {
       search: '',
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Фамилия',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'lastName',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
+        { text: 'Имя', value: 'firstName' },
+        { text: 'Отчество', value: 'middleName' },
+        { text: 'Должность', value: 'position' },
+        { text: 'Some', value: 'protein' },
         { text: 'Iron (%)', value: 'iron' },
       ],
       desserts: [

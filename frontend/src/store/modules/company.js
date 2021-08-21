@@ -16,7 +16,9 @@ const actions = {
 	async loadCompany({commit}, companyId){
         commit('SET_COMPANY_ID', companyId);
         var companyInfo = await APICRMServices.getCompany(companyId);
-        commit('SET_COMPANY_INFO', companyInfo);
+        commit('SET_COMPANY_INFO', companyInfo.data);
+        var emps = await APICRMServices.getCompanyEmployees(companyId);
+        commit('SET_COMPANY_EMPLOYEES', emps.data);
     }
 }
 
@@ -26,6 +28,9 @@ const mutations = {
     },
     SET_COMPANY_INFO(state, info){
         state.info = info;
+    },
+    SET_COMPANY_EMPLOYEES(state, data){
+        state.employees = data;
     }
 }
 

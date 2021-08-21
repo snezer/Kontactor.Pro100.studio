@@ -14,6 +14,10 @@ async function getCompany(id){
     return await axios.get(`Company/${id}`);
 }
 
+async function getCompanyEmployees(id){
+    return await axios.get(`Company/employees/${id}`);
+}
+
 async function getUserByLogin(login){
     return await axios.get(`Users/${login}`);
 }
@@ -40,5 +44,6 @@ export default {
     getInfoRoom,
     getInfoRoomByMapId,
     getUserByLogin,
-    getCompany
+    getCompany,
+    getCompanyEmployees
 }
