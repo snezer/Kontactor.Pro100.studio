@@ -51,8 +51,13 @@ namespace KONTAKTOR.Services.DocxTemplating
                 {
                     Fill(document, model);
                     document.Save();
-                    return stream.ToArray();
+                    document.Close();
                 }
+
+                stream.Seek(0, SeekOrigin.Begin);
+                //await stream.FlushAsync();
+                return stream.ToArray();
+                
             }
         }
 

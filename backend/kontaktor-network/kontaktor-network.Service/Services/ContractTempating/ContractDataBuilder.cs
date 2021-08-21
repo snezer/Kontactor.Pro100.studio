@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KONTAKTOR.DA.Models;
+using KONTAKTOR.Service.Services.DocxTemplating;
 using kontaktor_network.DA.Models;
 using KONTRAKTOR.DA.Models;
 using KONTRAKTOR.Services.Contract.Letter;
@@ -43,6 +44,7 @@ namespace KONTAKTOR.Service.Services.ContractTempating
         public ContractLetterModel Build()
         {
             ContractLetterModel result = new ContractLetterModel();
+            result.DocumentParts = new IParagraph[] {new FreeTextModel() {Text = ""}};
             result.CommonTemplateData = new CommonContractTemplateData()
             {
                 Area = $"{_compartment.Area:F}",
