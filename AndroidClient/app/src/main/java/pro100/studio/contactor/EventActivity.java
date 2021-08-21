@@ -3,10 +3,12 @@ package pro100.studio.contactor;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,10 +31,10 @@ public class EventActivity extends AppCompatActivity {
     public void SetDataToEventsList(){
         eventList = new EventCard[4];
         String subject = "Администрация";
-        String body = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
+        String body = "Аренда запрашиваемого вами помещения одобрена!";
         eventList[0] = new EventCard("1", subject, body, true);
         String subject1 = "Администрация";
-        String body1 = "Задолженностьпо аренде Необходимо оплатить в течении 10 рабочих дней.";
+        String body1 = "В этом месяце текущий платеж по аренде необходимо внести до 10 - го числа";
         eventList[1] = new EventCard("1", subject1, body1, false);
         String subject2 = "Коворкинг";
         String body2 = "Картинки-пати! Объявлен день настоящего питона. Заходи пиши код и получай призы!";
@@ -44,6 +46,12 @@ public class EventActivity extends AppCompatActivity {
         AdapterEvent adapterEvent = new AdapterEvent(this);
         ListView eventList = (ListView) findViewById(R.id.events);
         eventList.setAdapter(adapterEvent);
+        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(getApplicationContext(), floor_editor.class);
+                startActivity(intent);
+            }
+        });
     }
 
     class AdapterEvent extends ArrayAdapter<EventCard> {
