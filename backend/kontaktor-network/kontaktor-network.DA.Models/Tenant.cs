@@ -13,5 +13,20 @@ namespace kontaktor_network.DA.Models
         public string CompanyId { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserInformationId { get; set; }
+        public Counter[] Counters { get; set; }
+    }
+
+    public class Counter
+    {
+        public string SerialNumber { get; set; }
+        public string ResourceType { get; set; }
+
+        public MonthlyValues Values { get; set; }
+    }
+
+    public class MonthlyValues
+    {
+        public DateTime EnterDate { get; set; }
+        public decimal Volume { get; set; }
     }
 }
