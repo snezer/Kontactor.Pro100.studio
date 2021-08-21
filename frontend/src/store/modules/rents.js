@@ -25,7 +25,7 @@ const actions = {
             return {
                 ...rent,
                 time: `${rent.contractStart.substring(0, 10)} / ${rent.contractEnd.substring(0, 10)}`, // последний раз так делаю, честно
-                place: infoRoom.data.name,
+                place: infoRoom.data.shortNameOrCode,
                 name: `${infoUser.data.lastName} ${infoUser.data.firstName}`,
             }
         }))
