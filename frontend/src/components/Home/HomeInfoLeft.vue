@@ -1,9 +1,6 @@
 <template>
   <div class="info-left-block">
-    <v-icon color="white" style="font-size: 7em">
-      mdi-penguin
-    </v-icon>
-    <h1 class="font-weight-bold">Контактор</h1>
+    <v-img width="70%" style="margin-left: 15%;" :src="require('@/assets/logo (3).svg')"></v-img>
     <div class="description">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur eius placeat quam rem tenetur. Asperiores autem cum deleniti dicta facere magni molestias nisi nobis provident, quis temporibus unde.
     </div>

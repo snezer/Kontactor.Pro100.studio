@@ -4,17 +4,14 @@
       <v-col cols="12">
         <v-img width="50%" style="margin-left: 25%;" :src="require('@/assets/logo (3).svg')"></v-img>
       </v-col>
-<!--      <v-col cols="12">-->
-<!--        <h1 class="font-weight-black text-lg-center">Контактор</h1>-->
-<!--      </v-col>-->
       <v-col lg="6" offset-lg="3">
-        <v-text-field dark outlined label="Логин" color="white" dense append-icon="mdi-account"></v-text-field>
+        <v-text-field dark outlined v-model="login" label="Логин" color="white" dense append-icon="mdi-account"></v-text-field>
       </v-col>
       <v-col lg="6" offset-lg="3">
-        <v-text-field dark type="password" outlined label="Пароль" color="white" dense append-icon="mdi-key"></v-text-field>
+        <v-text-field dark type="password" v-model="password" outlined label="Пароль" color="white" dense append-icon="mdi-key"></v-text-field>
       </v-col>
       <v-col lg="6" offset-lg="3" class="text-lg-center">
-        <v-btn outlined color="white">
+        <v-btn :loading="loading" outlined color="white" @click="checkUser">
           Войти
         </v-btn>
       </v-col>
@@ -23,8 +20,26 @@
 </template>
 
 <script>
+import APICRMServices from "@/services/APICRMServices";
 export default {
-  name: "HomeLogin"
+  name: "HomeLogin",
+  data(){
+    return{
+      login: '',
+      password: '',
+      loading: false,
+    }
+  },
+  methods:{
+    async checkUser(){
+      this.loading = true
+        const result = await APICRMServices.checkUser(this.login,this.password)
+      this.loading = false
+      if (result){
+        this.$router.push({name:'accruals'})
+      }
+    }
+  }
 }
 </script>
 
