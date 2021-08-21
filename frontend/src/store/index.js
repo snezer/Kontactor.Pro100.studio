@@ -6,6 +6,7 @@ import editor from './modules/editor'
 import user from './modules/user'
 import chat from './modules/chat'
 import company from './modules/company'
+import rents from "./modules/rents"
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
     editor,
     user,
     chat,
-    company
+    company,
+    rents
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

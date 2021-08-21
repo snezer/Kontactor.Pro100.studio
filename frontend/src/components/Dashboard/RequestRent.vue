@@ -4,14 +4,69 @@
 
     </div>
     <div class="list-request-rent">
+      {{rents}}
       <h2>Список заявок на аренду</h2>
+      <v-data-table :items="rents" :headers="headers">
+        <template v-slot:item.id="{ item}">
+          <v-btn outlined @click="validationRent(item.id)" >
+            <v-icon>
+              mdi-check
+            </v-icon> Подтвердить
+          </v-btn>
+        </template>
+      </v-data-table>
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+import APICRMServices from "@/services/APICRMServices";
+
 export default {
-  name: "RequestRent"
+  name: "RequestRent",
+  data(){
+    return{
+      headers: [
+        {
+          text: 'Наименование площадки',
+          align: 'start',
+          sortable: false,
+          value: 'place',
+        },
+        {
+          text: 'Заявитель',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        {
+          text: 'Срок аренды',
+          align: 'start',
+          sortable: false,
+          value: 'time',
+        },
+        {
+          text: 'Подтверждение',
+          align: 'start',
+          sortable: false,
+          value: 'id',
+        },
+      ]
+    }
+  },
+  computed:{
+    ...mapGetters({rents: 'rents/allRentsFullData', userId: 'user/userId'})
+  },
+  methods:{
+    ...mapActions({getRentsFullData: 'rents/loadRentsFullData'}),
+    async validationRent(id){
+        const result = await  APICRMServices.validationRent({ rentInfoId: id, userId: this.userId})
+    }
+  },
+  created() {
+    this.getRentsFullData()
+  }
 }
 </script>
 

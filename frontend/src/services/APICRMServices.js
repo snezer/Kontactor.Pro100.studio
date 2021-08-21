@@ -26,6 +26,9 @@ async function checkUser(login, password){
     return await axios.post('Users/check',{login: login, password: password})
 }
 
+async function getUser(id){
+    return await axios.get(`Users/id/${id}`)
+}
 
 async function saveInfoRoom(infoRoom){
 
@@ -41,6 +44,13 @@ async function getInfoRoomByMapId(mapRoomId){
 async function createRents(rents){
     return await axios.post('Rents/book', {...rents})
 }
+async function getRents(){
+    return await axios.get('Rents')
+}
+
+async function validationRent(validRent){
+    return await axios.post('/api/v1/Rents/validate', {...validRent})
+}
 export default {
     createCompany,
     checkUser,
@@ -51,4 +61,7 @@ export default {
     getCompany,
     getCompanyEmployees,
     createRents,
+    getRents,
+    getUser,
+    validationRent,
 }
