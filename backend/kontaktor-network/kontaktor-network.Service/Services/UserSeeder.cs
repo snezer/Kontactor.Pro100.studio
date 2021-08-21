@@ -26,7 +26,7 @@ namespace KONTAKTOR.Service.Services
                     Login = "admin",
                     Password = "admin",
                     FirstName = "Админ",
-                    SecondName = "Админов",
+                    LastName = "Админов",
                     SystemRoles = new[] {"System.Admin"}
                 }
 

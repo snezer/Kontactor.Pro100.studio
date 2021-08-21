@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using CENTROS.SMSNotifications.Service.Models.Mapping;
 using Dapper.Contrib.Extensions;
 using DapperExtensions.Sql;
@@ -11,6 +14,7 @@ using netcoreservice.Service.Discovery;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using KONTAKTOR.DA.Interfaces;
+using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
@@ -51,7 +55,25 @@ namespace netcoreservice.Service
                 options.SubstituteApiVersionInUrl = true;
             });
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+            services.AddSwaggerGen(options =>
+                {
+                    options.OperationFilter<SwaggerDefaultValues>();
+                    
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    if (File.Exists(xmlPath))
+                    {
+                        options.IncludeXmlComments(xmlPath);
+                    }
+
+                    var modelsFile = $"{typeof(Compartment).Assembly.GetName().Name}.xml";
+                    var xmlPathModels = Path.Combine(AppContext.BaseDirectory, modelsFile);
+                    if (File.Exists(xmlPathModels))
+                    {
+                        options.IncludeXmlComments(xmlPathModels);
+                    }
+                }
+            );
 
             services.AddSystemMetrics();
             
@@ -66,6 +88,10 @@ namespace netcoreservice.Service
             services.AddSingleton<BinaryContentRepository>();
             services.AddSingleton<UserInformationRepository>();
             services.AddSingleton<UserRoleRepository>();
+            services.AddSingleton<TenancyRepository>();
+            services.AddSingleton<CompartmentRepository>();
+            services.AddSingleton<RentFactRepository>();
+            services.AddSingleton<MainNewsRepository>();
 
             services.AddSingleton<RolesSeeder>();
             services.AddSingleton<UserSeeder>();
@@ -83,6 +109,14 @@ namespace netcoreservice.Service
             }
 
             app.UseRouting();
+            app.UseCors(o =>
+            {
+                o.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(_=>true)
+                    .AllowCredentials();
+            });
+                
             app.UseHttpMetrics();
             
             app.UseAuthorization();

@@ -6,6 +6,11 @@
     <RootNamespace>KONTAKTOR.Service</RootNamespace>
   </PropertyGroup>
 
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
     <Compile Remove="Implementation\**" />
     <Compile Remove="LocalDB\**" />

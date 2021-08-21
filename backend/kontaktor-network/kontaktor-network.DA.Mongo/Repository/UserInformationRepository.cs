@@ -17,5 +17,11 @@ namespace KONTAKTOR.DA.Mongo.Repository
         {
             await _collection.DeleteManyAsync(FilterDefinition<UserInformation>.Empty);
         }
+
+        public async Task<UserInformation> FindByLogin(string modelLogin)
+        {
+            var users = await _collection.FindAsync(u => u.Login == modelLogin);
+            return users.SingleOrDefault();
+        }
     }
 }

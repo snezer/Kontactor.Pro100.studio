@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using KONTAKTOR.DA.Models;
 using KONTAKTOR.DA.Mongo.Repository;
 using KONTAKTOR.DA.Repository;
 using KONTAKTOR.Notifications.DA.Interfaces;
+using KONTAKTOR.Service.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,25 +22,25 @@ namespace netcoreservice.Service.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    public class CompanyController : ControllerBase
+    public class BinaryContentController : ControllerBase
     {
-        private CompanyRepository _repo;
+        private BinaryContentRepository _repo;
 
         // private readonly log4net.ILog _logger;
-        public CompanyController(CompanyRepository repo, IMapper mapper)
+        public BinaryContentController(BinaryContentRepository repo,  IMapper mapper)
         {
             _repo = repo;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Company model)
+        public async Task<IActionResult> Create(BinaryContent model)
         {
             var company = await _repo.CreateAsync(model);
             return Ok(company);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Company model)
+        public async Task<IActionResult> Update(BinaryContent model)
         {
             var result = await _repo.UpdateAsync(model);
             return Ok(result);
@@ -53,6 +55,26 @@ namespace netcoreservice.Service.Controllers
                 ? (IActionResult)Ok(result)
                 : NotFound();
         }
+
+        /// <summary>
+        /// Взять блоб как есть без кодировки
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("binary/{id}")]
+        public async Task<IActionResult> GetBinary(string id)
+        {
+            var result = await _repo.GetAsync(id);
+            if (result == null)
+                return NotFound();
+            var  ms = new MemoryStream();
+            await ms.WriteAsync(result.Content, 0, result.Content.Length);
+            await ms.FlushAsync();
+            ms.Seek(0, SeekOrigin.Begin);
+
+            return File(ms, result.ContentType ?? "application/octet-stream", result.Filename);
+        }
+
 
     }
 }
