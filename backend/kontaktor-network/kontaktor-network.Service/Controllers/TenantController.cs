@@ -27,7 +27,7 @@ namespace KONTAKTOR.Service.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
             var result = await _tenants.GetAsync(id);
