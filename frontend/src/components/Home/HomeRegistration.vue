@@ -3,9 +3,7 @@
     <v-stepper vertical class="wrapper-registration" v-model="stepRegistration" color="white">
       <div class="steps">
         <div class="title">
-          <v-icon left large color="white">
-            mdi-penguin
-          </v-icon>Контактор
+          <v-img width="50%" :src="require('@/assets/logo (3).svg')"></v-img>
         </div>
         <div class="description">
           Начнем работать
@@ -41,7 +39,7 @@
       </div>
       <div class="steps-content">
         <div class="text-right">
-          <v-btn icon>
+          <v-btn icon link to="/">
             <v-icon>
               mdi-close
             </v-icon>
@@ -186,9 +184,62 @@
                   </v-btn>
                 </v-col>
               </v-row>
-
-
             </div>
+          </v-card>
+        </v-stepper-content>
+        <v-stepper-content step="3">
+          <v-card flat height="850">
+            <MapForUser></MapForUser>
+          </v-card>
+          <v-card flat height="350">
+            <div>
+              <v-row>
+                <v-col
+                    cols="12"
+                    sm="6"
+                >
+                  <span style="font-size: 1.3em">Укажите время аренды</span>
+                  <v-date-picker
+                      v-model="dates"
+                      landscape
+                      range
+                  ></v-date-picker>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                >
+                  <span style="font-size: 1.3em">Была выбранна площадка: {{activeRoom.data.shortNameOrCode}}</span>
+                  <v-row>
+                    <v-col cols="6">
+                      <v-btn color="primary" large rounded outlined>
+                        Назад
+                      </v-btn>
+                    </v-col>
+                    <v-col cols="6" class="text-right">
+                      <v-btn
+                          class="text-right"
+                          elevation="0"
+                          width="150"
+                          rounded
+                          large
+                          color="primary"
+                          @click="stepRegistration = 4"
+                      >
+                        Подать заявку
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </div>
+          </v-card>
+        </v-stepper-content>
+        <v-stepper-content step="4">
+          <v-card flat>
+            <v-card-title>
+              Ваша заявка была принята на рассмотрение! Ожидайте, с вами свяжутся орагнизаторы.
+            </v-card-title>
           </v-card>
         </v-stepper-content>
       </div>
@@ -197,11 +248,33 @@
 </template>
 
 <script>
+import MapForUser from "@/components/MapForUser";
+import {mapState} from "vuex";
 export default {
   name: "HomeRegistration",
+  components: {MapForUser},
   data(){
     return{
+      dates: ['2019-09-10', '2019-09-20'],
       stepRegistration: 1,
+      activeRoom: {
+        data:{
+          shortNameOrCode: ''
+        }
+      },
+    }
+  },
+  computed:{
+    ...mapState('editor',{
+      selectHomeElement: 'selectedHomeElement'
+    }),
+    dateRangeText () {
+      return this.dates.join(' ~ ')
+    },
+  },
+  watch:{
+    selectHomeElement: function (val){
+      this.activeRoom = this.selectHomeElement
     }
   }
 }
