@@ -2,7 +2,7 @@ package pro100.studio.contactor.Models;
 
 public class WifiPoints {
     private String ssid;
-    private Double level;
+    private String level;
 
     public String getSsid() {
         return ssid;
@@ -12,7 +12,7 @@ public class WifiPoints {
         this.ssid = ssid;
     }
 
-    public WifiPoints(String ssid, Double level) {
+    public WifiPoints(String ssid, String level) {
         this.ssid = ssid;
         this.level = level;
     }

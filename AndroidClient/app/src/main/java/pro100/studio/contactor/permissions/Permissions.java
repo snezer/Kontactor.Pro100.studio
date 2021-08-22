@@ -265,13 +265,8 @@ public class Permissions extends AppCompatActivity {
                 String item_level = vector_item[3];
                 String ssid = item_essid.split(": ")[1];
                 String level = item_level.split(": ")[1];
-                nets[i] = new WifiPoints(ssid, Double.parseDouble(level));
-
+                nets[i] = new WifiPoints(ssid, level);
             }
-
-
         }
-
-
     }
 }

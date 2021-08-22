@@ -89,7 +89,7 @@ public class ScanWiFiService extends Service {
                 String item_level = vector_item[3];
                 String ssid = item_essid.split(": ")[1];
                 String level = item_level.split(": ")[1];
-                pointNets[i] = new WifiPoints(ssid, Double.parseDouble(level));
+                pointNets[i] = new WifiPoints(ssid, level);
 
             }
 

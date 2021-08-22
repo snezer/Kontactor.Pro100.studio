@@ -17,13 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import pro100.studio.contactor.DBModels.PointOnPlane;
+import pro100.studio.contactor.DBModels.WiFiPoints;
 import pro100.studio.contactor.Models.Element;
+import pro100.studio.contactor.Models.WifiPoints;
 import pro100.studio.contactor.permissions.Permissions;
 
 public class WiFiSettings extends AppCompatActivity {
@@ -32,7 +38,7 @@ public class WiFiSettings extends AppCompatActivity {
     private ImageView btnBack;
     private Button btnSave;
     private WifiManager wifiManager;
-    //private WifiScanReceiver wifiReceiver;
+    private List<WiFiPoints> wifiPoints;
     private Element[] nets;
 
     @Override
@@ -41,7 +47,7 @@ public class WiFiSettings extends AppCompatActivity {
         setContentView(R.layout.activity_wi_fi_settings);
 
         wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-        //wifiReceiver = new WifiScanReceiver();
+        wifiPoints = new ArrayList<>();
 
         btnStartSkan = (Button) findViewById(R.id.button);
         btnStartSkan.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +96,48 @@ public class WiFiSettings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnSave = (Button) findViewById(R.id.saveButton);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText roomName = (EditText) findViewById(R.id.edRoomName);
+                String strRoomName = roomName.getText().toString();
+                if (strRoomName.isEmpty()){
+                    Toast.makeText(view.getContext(), "Наименование комнаты не может быть пустым!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                EditText coordM = (EditText) findViewById(R.id.edCoordMName);
+                String strCoordM = coordM.getText().toString();
+                if (strCoordM.isEmpty()){
+                    Toast.makeText(view.getContext(), "Координата М не может быть пустой!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                EditText coordL = (EditText) findViewById(R.id.edCoordLName);
+                String strCoordL = coordL.getText().toString();
+                if (strCoordL.isEmpty()){
+                    Toast.makeText(view.getContext(), "Координата L не может быть пустой!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                PointOnPlane point = new PointOnPlane(strRoomName, strCoordM, strCoordL, wifiPoints);
+                point.save();
+
+                roomName.setText("");
+                coordM.setText("");
+                coordL.setText("");
+                roomName.setText("");
+
+            }
+        });
     }
 
     private void scanSuccess(Context c){
         List<ScanResult> wifiScanList = wifiManager.getScanResults();
         nets = new Element[wifiScanList.size()];
-
+        if (!wifiPoints.isEmpty()){
+            wifiPoints.clear();
+        }
         for(int i = 0; i < wifiScanList.size(); i++){
 
             String item = ((wifiScanList.get(i)).toString());
@@ -112,6 +154,7 @@ public class WiFiSettings extends AppCompatActivity {
             String level = item_level.split(": ")[1];
             nets[i] = new Element(ssid, level);
 
+            wifiPoints.add(new WiFiPoints(ssid, level));
         }
 
         AdapterElements adapterElements = new AdapterElements((Activity)c);
@@ -122,31 +165,6 @@ public class WiFiSettings extends AppCompatActivity {
     private void scanFailture(){
 
     }
-
-    /*private class WifiScanReceiver extends BroadcastReceiver {
-        public void onReceive(Context c, Intent intent) {
-            List<ScanResult> wifiScanList = wifiManager.getScanResults();
-
-            nets = new Element[wifiScanList.size()];
-
-            for(int i = 0; i < wifiScanList.size(); i++){
-
-                String item = ((wifiScanList.get(i)).toString());
-                String[] vector_item = item.split(",");
-                String item_essid = vector_item[0];
-
-                String item_level = vector_item[3];
-                String ssid = item_essid.split(": ")[1];
-                String level = item_level.split(": ")[1];
-                nets[i] = new Element(ssid, level);
-
-            }
-
-            AdapterElements adapterElements = new AdapterElements((Activity)c);
-            ListView netList = (ListView) findViewById(R.id.WiFiItem);
-            netList.setAdapter(adapterElements);
-        }
-    }*/
 
     class AdapterElements extends ArrayAdapter<Object> {
         Activity context;

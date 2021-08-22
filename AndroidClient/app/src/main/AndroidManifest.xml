@@ -15,7 +15,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Contactor">
+        android:theme="@style/Theme.Contactor"
+        android:name="com.orm.SugarApp">
+        <meta-data android:name="DATABASE" android:value="contactor.db"/>
+        <meta-data android:name="VERSION" android:value="1"/>
+        <meta-data android:name="QUERY_LOG" android:value="true"/>
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="pro100.studio.contactor"/>
         <activity
             android:name=".WiFiSettings"
             android:exported="true" />
