@@ -37,7 +37,7 @@ export default {
     value: '',
     events: [],
     colors: ['#2196F3', '#3F51B5', '#673AB7', '#00BCD4', '#4CAF50', '#FF9800', '#757575'],
-    names: ['Собрание', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+    names: ['Собрание', 'Встреча', 'Отгул', 'Отсутствую', 'Событие', 'Праздник', 'Конференция'],
     dragEvent: null,
     dragStart: null,
     createEvent: null,
@@ -62,7 +62,7 @@ export default {
       } else {
         this.createStart = this.roundTime(mouse)
         this.createEvent = {
-          name: `Event #${this.events.length}`,
+          name: `Планерка #${this.events.length}`,
           color: this.rndElement(this.colors),
           start: this.createStart,
           end: this.createStart,

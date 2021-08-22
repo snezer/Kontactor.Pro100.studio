@@ -2,18 +2,35 @@
   <div class="chat-room-item">
     <v-list-item>
       <v-list-item-avatar>
-        <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+        <v-img src="https://cdn.vuetifyjs.com/images/john.jpg"></v-img>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Иванов Иван</v-list-item-title>
-        <v-list-item-subtitle>Lorem ipsum dolor sit amet...</v-list-item-subtitle>
+        <v-list-item-subtitle>Сегодня все будет готово!</v-list-item-subtitle>
       </v-list-item-content>
       <v-list-item-action >
         <div class="info-channel-messages">
             <div>17:54</div>
             <div>
-              <v-badge content="13" color="red" class="color-badge-count-messages"></v-badge>
+              <v-badge content="2" color="red" class="color-badge-count-messages"></v-badge>
             </div>
+        </div>
+      </v-list-item-action>
+    </v-list-item>
+    <v-list-item>
+      <v-list-item-avatar>
+        <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Администратор</v-list-item-title>
+        <v-list-item-subtitle>Ваша проблема будет решена в самое ближайшее время!</v-list-item-subtitle>
+      </v-list-item-content>
+      <v-list-item-action >
+        <div class="info-channel-messages">
+          <div>13:25</div>
+          <div>
+            <v-badge content="1" color="red" class="color-badge-count-messages"></v-badge>
+          </div>
         </div>
       </v-list-item-action>
     </v-list-item>
