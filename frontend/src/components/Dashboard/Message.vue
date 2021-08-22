@@ -1,22 +1,22 @@
 <template>
   <div class="message-wrapper">
     <div class="avatar">
-        <v-img class="v-avatar" width="50px" src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+        <v-img class="v-avatar" width="50px" src="https://cdn.vuetifyjs.com/images/john.jpg"></v-img>
     </div>
     <div class="messages-from-people">
       <div class="body-message blue-message">
         <div>
-          <div class="title">Иванов Иван</div>
-          <div class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae corporis cumque doloremque eveniet expedita hic molestias mollitia nobis odit pariatur quia ullam, vitae. A id illum impedit maxime non.</div>
+<!--          <div class="title">Иванов Иван</div>-->
+          <div class="message">Таким образом реализация намеченных плановых заданий позволяет выполнять важные задания по разработке дальнейших направлений развития.</div>
         </div>
         <div class="time-message">
-          17:54
+          17:50
         </div>
       </div>
       <div class="body-message default-message">
         <div>
           <div class="title">Иванов Иван</div>
-          <div class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae corporis cumque doloremque eveniet expedita hic molestias mollitia nobis odit pariatur quia ullam, vitae. A id illum impedit maxime non.</div>
+          <div class="message">Товарищи! начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. Задача организации, в особенности же новая модель организационной деятельности влечет за собой процесс внедрения и модернизации соответствующий условий активизации. </div>
         </div>
         <div class="time-message">
           17:54

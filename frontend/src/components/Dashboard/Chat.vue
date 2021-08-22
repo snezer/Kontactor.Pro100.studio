@@ -4,7 +4,7 @@
         <v-list>
           <v-list-item>
             <v-list-item-avatar>
-              <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+              <v-img src="https://cdn.vuetifyjs.com/images/john.jpg"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>Иванов Иван</v-list-item-title>

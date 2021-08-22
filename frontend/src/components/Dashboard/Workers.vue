@@ -65,12 +65,12 @@
         <div class="table-workers">
           <v-card flat>
             <v-card-title>
-              Nutrition
+              Персонал
               <v-spacer></v-spacer>
               <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search"
+                  label="Поиск"
                   single-line
                   hide-details
               ></v-text-field>
@@ -127,8 +127,8 @@ export default {
         { text: 'Имя', value: 'firstName' },
         { text: 'Отчество', value: 'middleName' },
         { text: 'Должность', value: 'position' },
-        { text: 'Some', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
+        // { text: 'Some', value: 'protein' },
+        // { text: 'Iron (%)', value: 'iron' },
       ],
       desserts: [
         {

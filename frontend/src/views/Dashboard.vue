@@ -22,7 +22,7 @@
 
                 <v-list-item-content>
                     <v-list-item-subtitle>IT Hub</v-list-item-subtitle>
-                    <v-list-item-title>Программируем и пьем кофе</v-list-item-title>
+                    <v-list-item-title>Программируем и печем</v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-icon>
@@ -131,6 +131,7 @@ export default {
       ],
       items: [
         { title: 'Главная', icon: 'mdi-home-city', link:'/dashboard/crm/accruals' },
+        { title: 'Карта', icon: 'mdi-map', link: '/dashboard/editor' },
         { title: 'Показания', link: '/dashboard/counters'},
         { title: 'Расписание', icon: 'mdi-calendar', link: '/dashboard/schedule' },
         { title: 'Лента', icon: 'mdi-newspaper-variant-outline', link: '/dashboard/news' },

@@ -11,7 +11,7 @@
           <v-card-title>Фильтры</v-card-title>
           <v-card-text>
             <h2 class="text-h6 mb-2">
-              Choose amenities
+              Начинка
             </h2>
 
             <v-chip-group
@@ -23,44 +23,50 @@
                   filter
                   outlined
               >
-                Elevator
+                Банан
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Washer / Dryer
+                Черешня
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Fireplace
+                Шоколад
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Wheelchair access
+                Яблоко
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Dogs ok
+                Груша
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Cats ok
+                Вишня
+              </v-chip>
+              <v-chip
+                  filter
+                  outlined
+              >
+                Киви
               </v-chip>
             </v-chip-group>
           </v-card-text>
 
           <v-card-text>
             <h2 class="text-h6 mb-2">
-              Choose neighborhoods
+              Повод
             </h2>
 
             <v-chip-group
@@ -72,37 +78,37 @@
                   filter
                   outlined
               >
-                Snowy Rock Place
+                Завтрак
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Honeylane Circle
+                День рождения
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Donna Drive
+                Гости
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Elaine Street
+                "Сломала ноготь""
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Court Street
+                Родители в гостях
               </v-chip>
               <v-chip
                   filter
                   outlined
               >
-                Kennedy Park
+                Дорогому человеку
               </v-chip>
             </v-chip-group>
           </v-card-text>
@@ -123,7 +129,7 @@
             </v-btn>
           </v-img>
 
-          <v-card-title>Продукт 1</v-card-title>
+          <v-card-title>Продукт {{i}}</v-card-title>
 
           <v-card-text>
             <v-row
