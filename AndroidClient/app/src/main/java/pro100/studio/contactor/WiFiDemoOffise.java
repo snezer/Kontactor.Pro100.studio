@@ -248,30 +248,54 @@ public class WiFiDemoOffise extends AppCompatActivity {
             }
         });
 
-        /*btnSetOnImg = (Button) findViewById(R.id.btnSet);
+        btnSetOnImg = (Button) findViewById(R.id.btnSet);
         btnSetOnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (iter){
                     case 1:
-                        LoadData(175, 315);
+                        LoadData(560, 470);
                         iter++;
                         break;
                     case 2:
-                        LoadData(315, 210);
+                        LoadData(560, 361);
                         iter = 3;
                         break;
                     case 3:
-                        LoadData(315, 360);
+                        LoadData(490, 361);
                         iter = 4;
                         break;
                     case 4:
+                        LoadData(390, 361);
+                        iter = 5;
+                        break;
+                    case 5:
+                        LoadData(309, 311);
+                        iter = 6;
+                        break;
+                    case 6:
+                        LoadData(365, 300);
+                        iter = 7;
+                        break;
+                    case 7:
+                        LoadData(338, 210);
+                        iter = 8;
+                        break;
+                    case 8:
+                        LoadData(238, 230);
+                        iter = 9;
+                        break;
+                    case 9:
+                        LoadData(168, 280);
+                        iter = 10;
+                        break;
+                    case 10:
                         LoadData(-315, -360);
                         iter = 1;
                         break;
                 }
             }
-        });*/
+        });
     }
 
     private  void  LoadData(int x, int y){
