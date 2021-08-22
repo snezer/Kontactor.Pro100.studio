@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.util.List;
 
-public class PointOnPlane extends SugarRecord<PointOnPlane> {
+public class PointOnPlane extends SugarRecord {
     public String getFloorName() {
         return FloorName;
     }
