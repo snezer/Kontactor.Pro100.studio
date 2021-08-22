@@ -254,42 +254,22 @@ public class WiFiDemoOffise extends AppCompatActivity {
             public void onClick(View view) {
                 switch (iter){
                     case 1:
-                        LoadData(560, 470);
-                        iter++;
+                        LoadData(560, 361);
+                        iter = 2;
                         break;
                     case 2:
-                        LoadData(560, 361);
+                        LoadData(390, 361);
                         iter = 3;
                         break;
                     case 3:
-                        LoadData(490, 361);
+                        LoadData(338, 210);
                         iter = 4;
                         break;
                     case 4:
-                        LoadData(390, 361);
+                        LoadData(168, 280);
                         iter = 5;
                         break;
                     case 5:
-                        LoadData(309, 311);
-                        iter = 6;
-                        break;
-                    case 6:
-                        LoadData(365, 300);
-                        iter = 7;
-                        break;
-                    case 7:
-                        LoadData(338, 210);
-                        iter = 8;
-                        break;
-                    case 8:
-                        LoadData(238, 230);
-                        iter = 9;
-                        break;
-                    case 9:
-                        LoadData(168, 280);
-                        iter = 10;
-                        break;
-                    case 10:
                         LoadData(-315, -360);
                         iter = 1;
                         break;
